@@ -8,7 +8,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.2</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 
 	<groupId>com.weatherapp</groupId>
@@ -21,7 +21,6 @@
 		<java.version>17</java.version>
 	</properties>
 
-	<!-- Repositories for Spring AI -->
 	<repositories>
 		<repository>
 			<id>maven-central</id>
@@ -43,42 +42,41 @@
 		</repository>
 	</repositories>
 
-	<!-- ✅ All dependencies are now under a single <dependencies> tag -->
+
 	<dependencies>
-		<!-- Spring Boot Starter for Web (REST API) -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- Spring Boot Starter Test (for Unit Testing) -->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
-		<!-- JSON Handling for API Responses -->
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
 
-		<!-- Spring AI (Optional: for weather predictions using AI) -->
+
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
 			<version>0.8.1</version>
 		</dependency>
 
-		<!-- Lombok (Optional: for reducing boilerplate code) -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
 
-		<!-- Apache HttpClient (Optional: for advanced HTTP requests) -->
+
 		<dependency>
 			<groupId>org.apache.httpcomponents.client5</groupId>
 			<artifactId>httpclient5</artifactId>
