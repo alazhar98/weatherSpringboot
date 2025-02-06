@@ -23,6 +23,11 @@ public class weatherController {
         return weatherService.getWeather(city);
     }
 
+    @GetMapping("/predict/{city}")
+    public String PredictService(@PathVariable String city) {
+        return weatherPredictionService.predictWeather(city);
+    }
+
 
 
 
