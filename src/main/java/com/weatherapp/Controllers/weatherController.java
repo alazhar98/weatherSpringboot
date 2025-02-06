@@ -27,9 +27,4 @@ public class weatherController {
     public String PredictService(@PathVariable String city) {
         return weatherPredictionService.predictWeather(city);
     }
-
-
-
-
-
 }
