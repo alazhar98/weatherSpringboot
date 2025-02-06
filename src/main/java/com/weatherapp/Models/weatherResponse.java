@@ -11,5 +11,11 @@ public class weatherResponse {
     private Main main ;
     private String name ;
 
+    @Data
+    public static class Main{
+        private double temp ;
+        private double humidity ;
+        private double pressure ;
+    }
 
 }
