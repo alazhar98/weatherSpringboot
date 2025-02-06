@@ -10,9 +10,6 @@ import com.weatherapp.Models.weatherResponse;
 public class weatherPredictionService {
 
 
-    private String apiKey;
-
-    private final RestTemplate restTemplate = new RestTemplate();
     private final OpenAiChatClient openAiChatClient;
 
     public weatherResponse getWeather(String city){
