@@ -14,6 +14,4 @@ public class WeatherService {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(endPoint,weatherResponse.class);
     }
-
-
 }
