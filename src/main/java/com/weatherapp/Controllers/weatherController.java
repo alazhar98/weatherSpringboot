@@ -1,7 +1,6 @@
 package com.weatherapp.Controllers;
 import com.weatherapp.Models.weatherResponse;
 import com.weatherapp.sevices.WeatherService;
-import com.weatherapp.sevices.weatherPredictionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +15,7 @@ public class weatherController {
     public WeatherService weatherService;
 
     @Autowired
-    private weatherPredictionService weatherPredictionService;
+    private com.weatherapp.services.WeatherPredictionService weatherPredictionService;
 
     @GetMapping("/{city}")
     public weatherResponse getWeather(@PathVariable String city){
