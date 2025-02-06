@@ -1,6 +1,7 @@
-package com.weatherapp.services;
+package com.weatherapp.sevices;
 
 import org.springframework.ai.openai.OpenAiChatClient;
+import org.springframework.ai.openai.api.OpenAiApi;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -13,8 +14,12 @@ public class WeatherPredictionService {
     private final String openWeatherApiKey;
     private final RestTemplate restTemplate;
 
-    public WeatherPredictionService(@Value("${spring.ai.openai.api-key}") String openAiApiKey, @Value("${weather.api.key}") String openWeatherApiKey) {
-        this.openAiChatClient = new OpenAiChatClient(openAiApiKey);
+    public WeatherPredictionService(
+            @Value("${spring.ai.openai.api-key}") String openAiApiKey,
+            @Value("${weather.api.key}") String openWeatherApiKey
+    ) {
+        OpenAiApi openAiApi = new OpenAiApi(openAiApiKey);
+        this.openAiChatClient = new OpenAiChatClient(openAiApi);
         this.openWeatherApiKey = openWeatherApiKey;
         this.restTemplate = new RestTemplate();
     }
@@ -22,6 +27,7 @@ public class WeatherPredictionService {
     public String predictWeather(String city) {
 
         String weatherData = getCurrentWeather(city);
+
 
         String prompt = "Based on the following weather data, predict the weather for the next 3 days:\n" + weatherData;
         return openAiChatClient.call(prompt);
