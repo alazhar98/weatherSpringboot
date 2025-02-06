@@ -6,8 +6,8 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class WeatherService {
-    private static final String API_KEY = "<>";
-    private static final String URL = "";
+    private static final String API_KEY = "<weather.api.key>";
+    private static final String URL = "spring.ai.openai.api-key";
 
     public weatherResponse getWeather(String city){
         String endPoint= String.format(URL,city,API_KEY);
