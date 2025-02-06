@@ -1,4 +1,15 @@
 package com.weatherapp.Models;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.tools.javac.Main;
+import lombok.Data;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Data
 public class weatherResponse {
+    private Main main ;
+    private String name ;
+
+
 }
