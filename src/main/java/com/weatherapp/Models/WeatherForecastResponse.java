@@ -13,7 +13,7 @@ public class WeatherForecastResponse {
         private long dt;
         private Main main;
         private Weather[] weather;
-        private String dt_txt;
+        private String d;
     }
 
     @Data
