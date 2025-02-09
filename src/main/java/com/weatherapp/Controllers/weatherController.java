@@ -10,17 +10,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("/weather")
+
 public class weatherController {
 
-    @Autowired
-    public WeatherService weatherService;
+
+    private static final String DAILY_FORECAST_TIME = "00:00:00";
 
     @Autowired
-    public WeatherPredictionService weatherPredictionService;
+    private WeatherService weatherService;
 
-    @GetMapping("getWeather/{city}")
+    @Autowired
+    private WeatherPredictionService weatherPredictionService;
+
+    @GetMapping("/getWeather/{city}")
     public weatherResponse getWeather(@PathVariable String city) {
         try {
             return weatherService.getWeather(city);
@@ -32,24 +37,24 @@ public class weatherController {
     }
 
     @GetMapping("/getPredictWeather/{city}")
-    public String predictService(@PathVariable String city) {
+    public String getWeatherPrediction(@PathVariable String city) {
         WeatherForecastResponse forecastResponse = weatherPredictionService.getWeatherForecast(city);
+        StringBuilder forecastOutput = new StringBuilder();
 
-        // Example: Print forecast for the next 3 days
-        StringBuilder forecast = new StringBuilder();
-        forecastResponse.getClass().stream()
-                .filter(forecastItem -> forecastItem() != null && forecastItem.getDt_txt().contains("00:00:00")) // Check null before using
-                .limit(3) // Limit to the next 3 days
+        forecastResponse.getList().stream()
+                .filter(forecastItem -> forecastItem != null &&
+                        forecastItem.getDt_txt() != null &&
+                        forecastItem.getDt_txt().contains(DAILY_FORECAST_TIME))
+                .limit(3)
                 .forEach(forecastItem -> {
-                    forecast.append("Date: ").append(forecastItem.getDt_txt()).append("\n");
                     if (forecastItem.getMain() != null) {
-                        forecast.append("Temp: ").append(forecastItem.getMain().getTemp()).append("°C\n");
+                        forecastOutput.append("Temp: ").append(forecastItem.getMain().getTemp()).append("°C\n");
                     }
-                    if (forecastItem.getWeather() != null && forecastItem.getWeather().length > 0) {
-                        forecast.append("Description: ").append(forecastItem.getWeather()[0].getDescription()).append("\n");
-                    }
-                    forecast.append("--------------------------------------------------\n");
                 });
-        return forecast.toString();
+
+        return forecastOutput.toString();
     }
+
 }
+
+
