@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/weather")
 public class weatherController {
 
-    private static final String DAILY_FORECAST_TIME = "00:00:00";
+
 
     @Autowired
     private WeatherService weatherService;
@@ -25,13 +25,12 @@ public class weatherController {
     private WeatherPredictionService weatherPredictionService;
 
     @GetMapping("/getWeather/{city}")
-    public weatherResponse getWeather(@PathVariable String city) {
+    public ResponseEntity<weatherResponse> getWeather(@PathVariable String city) {
         try {
-            return weatherService.getWeather(city);
-        } catch (IllegalArgumentException ex) {
-            throw new RuntimeException("Configuration Error: " + ex.getMessage());
+            weatherResponse weatherResponse = weatherService.getWeather(city);
+            return ResponseEntity.ok(weatherResponse);
         } catch (RuntimeException ex) {
-            throw new RuntimeException("Error: " + ex.getMessage() + ". Please try again later.");
+            return ResponseEntity.badRequest().body(null);
         }
     }
 
