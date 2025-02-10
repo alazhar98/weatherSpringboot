@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/weather")
 public class weatherController {
+
     private static final String DAILY_FORECAST_TIME = "00:00:00";
 
     @Autowired
@@ -39,7 +40,6 @@ public class weatherController {
         String weatherPrediction = weatherPredictionService.getWeatherPrediction();
         return ResponseEntity.ok(weatherPrediction);
     }
-
 }
 
 
