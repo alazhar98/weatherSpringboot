@@ -60,7 +60,7 @@ public class WeatherForecastResponse {
 
     public static class Weather {
 
-        private String description; // Weather description
+        private String description;
 
         public String getDescription() {
             return description;
