@@ -57,7 +57,6 @@ public class WeatherForecastResponse {
             this.temp = temp;
         }
     }
-
     public static class Weather {
 
         private String description;
