@@ -1,6 +1,7 @@
 package com.weatherapp.sevices;
 
-import com.weatherapp.Models.weatherResponse;
+import com.weatherapp.Models.WeatherResponse;
+;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
@@ -18,8 +19,7 @@ public class WeatherService {
 
     @Value("${weather.api.url}")
     public String apiUrl;
-
-    public weatherResponse getWeather(String city) {
+    public WeatherResponse getWeather(String city) {
 
         if (apiKey == null || apiKey.isEmpty()) {
             throw new IllegalArgumentException("Weather API key is missing.");
@@ -34,7 +34,7 @@ public class WeatherService {
         RestTemplate restTemplate = new RestTemplate();
 
         try {
-            weatherResponse response = restTemplate.getForObject(endPoint, weatherResponse.class);
+            WeatherResponse response = restTemplate.getForObject(endPoint, WeatherResponse.class);
             if (response == null) {
                 throw new RuntimeException("No data received from API.");
             }
