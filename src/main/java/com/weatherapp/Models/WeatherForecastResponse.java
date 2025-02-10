@@ -4,7 +4,7 @@ import java.util.List;
 
 public class WeatherForecastResponse {
 
-    private List<Forecast> list; // List of forecast objects
+    private List<Forecast> list;
 
     public List<Forecast> getList() {
         return list;
@@ -17,8 +17,8 @@ public class WeatherForecastResponse {
     public static class Forecast {
 
         private String dt_txt; // Date and time of forecast
-        private Main main; // Main weather data (temperature, etc.)
-        private Weather[] weather; // Weather descriptions
+        private Main main;
+        private Weather[] weather;
 
         public String getDt_txt() {
             return dt_txt;
