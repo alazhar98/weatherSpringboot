@@ -25,4 +25,10 @@ public class weatherResponse {
         private String description;
 
     }
+    @Data
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class Sys {
+        private long sunrise;
+        private long sunset;
+    }
 }
