@@ -1,50 +1,36 @@
 package com.weatherapp.sevices;
 
-import com.weatherapp.Models.WeatherForecastResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 public class WeatherPredictionService {
 
-    @Value("${spring.ai.openai.api-key}")
-    private String apiKey;
+    private  RestTemplate restTemplate;
+    private final String OPENAI_API_KEY = "spring.ai.openai.api-key";
+    private final String WEATHER_API_KEY = "weather.api.key";
+    private final String WEATHER_API_URL = "https://api.openweathermap.org/data/2.5/weather" + WEATHER_API_KEY;
+    private final String OPENAI_API_URL = "https://api.openai.com/v1/completions";
 
-    @Value("${openai.api.url}")
-    private String apiUrl;
+    public String getWeatherPrediction() {
 
-    private static final Logger logger = LoggerFactory.getLogger(WeatherPredictionService.class);
+        ResponseEntity<String> response = restTemplate.exchange(WEATHER_API_URL, HttpMethod.GET, null, String.class);
+        String weatherData = response.getBody(); // Extract weather data from response
 
-    private final RestTemplate restTemplate;
+        String prompt = "Here is the weather forecast for London for the next 5 days: " + weatherData + "\n\nSummarize the weather predictions for these days.";
 
-    public WeatherPredictionService(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + OPENAI_API_KEY);
+        headers.set("Content-Type", "application/json");
 
-    public WeatherForecastResponse getWeatherForecast(String city) {
+        HttpEntity<String> entity = new HttpEntity<>(String.format("{\"model\":\"text-davinci-003\", \"prompt\":\"%s\", \"max_tokens\":150}", prompt), headers);
 
-        String url = apiUrl.replace("{city}", city).replace("{apiKey}", apiKey);
+        ResponseEntity<String> openAIResponse = restTemplate.exchange(OPENAI_API_URL, HttpMethod.POST, entity, String.class);
 
-        logger.info("Fetching weather forecast for city: {}", city);
-        logger.debug("Generated request URL: {}", url);
-
-        try {
-
-            WeatherForecastResponse response = restTemplate.getForObject(url, WeatherForecastResponse.class);
-
-            if (response != null) {
-                logger.info("Successfully fetched forecast data for city: {}", city);
-            } else {
-                logger.warn("Received null response for city: {}", city);
-            }
-
-            return response;
-        } catch (Exception e) {
-            logger.error("Failed to fetch weather forecast for city: {}. Error: {}", city, e.getMessage(), e);
-            throw e;
-        }
+        return openAIResponse.getBody();
     }
 }
