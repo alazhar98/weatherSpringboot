@@ -1,6 +1,5 @@
 package com.weatherapp.Models;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,12 +12,12 @@ import java.time.format.DateTimeFormatter;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-public class weatherResponse {
+public class WeatherResponse {
     private Main main;
     private String name;
     private Weather[] weather;
     private Sys sys;
-    private static Coord coord;
+    private Coord coord;
 
     @Data
     public static class Main {
@@ -46,23 +45,34 @@ public class weatherResponse {
         private String country;
 
         @JsonProperty("sunriseTime")
-        public String getSunriseTime() {
-            return formatUnixTimestamp(sunrise, coord.getLat(), coord.getLon());
+        public String getSunriseTime(double lat, double lon) {
+            return formatUnixTimestamp(sunrise, lat, lon);
         }
 
         @JsonProperty("sunsetTime")
-        public String getSunsetTime() {
-            return formatUnixTimestamp(sunset, coord.getLat(), coord.getLon());
+        public String getSunsetTime(double lat, double lon) {
+            return formatUnixTimestamp(sunset, lat, lon);
         }
 
+        @JsonIgnore
         private String formatUnixTimestamp(long timestamp, double lat, double lon) {
-            String timezone = getTimeZone(lat, lon);
-            ZonedDateTime dateTime = Instant.ofEpochSecond(timestamp)
-                    .atZone(ZoneId.of(timezone));
-            return dateTime.format(DateTimeFormatter.ofPattern("hh:mm a"));
+            if (timestamp <= 0) {
+                return "Invalid timestamp";
+            }
+
+            try {
+                String timezone = getTimeZone(lat, lon);
+                ZonedDateTime dateTime = Instant.ofEpochSecond(timestamp)
+                        .atZone(ZoneId.of(timezone));
+                return dateTime.format(DateTimeFormatter.ofPattern("hh:mm a"));
+            } catch (Exception e) {
+                return "Unable to format time";
+            }
         }
 
+        @JsonIgnore
         private String getTimeZone(double lat, double lon) {
+
             return ZoneId.of("GMT").getId();
         }
     }
