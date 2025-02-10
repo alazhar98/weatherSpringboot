@@ -9,6 +9,7 @@ public class weatherResponse {
     private Main main;
     private String name;
     private Weather[] weather;
+    private Sys sys;
 
     @Data
     public static class Main {
@@ -22,5 +23,6 @@ public class weatherResponse {
     public static class Weather {
         private String main;
         private String description;
+
     }
 }
