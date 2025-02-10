@@ -30,5 +30,9 @@ public class weatherResponse {
     public static class Sys {
         private long sunrise;
         private long sunset;
+
+        public String getFormattedSunrise() {
+            return formatUnixTimestamp(sunrise);
+        }
     }
 }
