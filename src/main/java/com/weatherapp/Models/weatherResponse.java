@@ -34,5 +34,8 @@ public class weatherResponse {
         public String getFormattedSunrise() {
             return formatUnixTimestamp(sunrise);
         }
+        public String getFormattedSunset() {
+            return formatUnixTimestamp(sunset);
+        }
     }
 }
