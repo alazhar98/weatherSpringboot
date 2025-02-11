@@ -35,7 +35,7 @@ public class weatherController {
     @GetMapping("/forecast/{city}")
     public ResponseEntity<String> getWeatherPrediction(@PathVariable String city) {
         try {
-            String weatherPrediction = weatherPredictionService.getWeatherPrediction(); 
+            String weatherPrediction = weatherPredictionService.getWeatherPrediction(city);
             return ResponseEntity.ok(weatherPrediction);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
