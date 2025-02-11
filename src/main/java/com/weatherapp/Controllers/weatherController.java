@@ -1,15 +1,13 @@
 package com.weatherapp.Controllers;
 
-import com.weatherapp.Models.WeatherForecastResponse;
+
 import com.weatherapp.Models.WeatherResponse;
 import com.weatherapp.sevices.WeatherPredictionService;
 import com.weatherapp.sevices.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -34,10 +32,20 @@ public class weatherController {
         }
     }
 
-    @GetMapping("/forecast")
-    public ResponseEntity<String> getWeatherPrediction() {
-        String weatherPrediction = weatherPredictionService.getWeatherPrediction();
-        return ResponseEntity.ok(weatherPrediction);
+    @GetMapping("/forecast/{city}")
+    public ResponseEntity<String> getWeatherPrediction(@PathVariable String city) {
+        try {
+            String weatherPrediction = weatherPredictionService.getWeatherPrediction(); 
+            return ResponseEntity.ok(weatherPrediction);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error retrieving weather data: " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/forecast/{city}")
+    public ResponseEntity<String> postWeatherForecast(@PathVariable String city) {
+        return ResponseEntity.ok("Weather forecast received for " + city);
     }
 }
 
