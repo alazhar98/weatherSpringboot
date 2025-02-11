@@ -1,5 +1,6 @@
 package com.weatherapp.sevices;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -13,46 +14,37 @@ import java.util.Map;
 public class WeatherPredictionService {
 
 
-    private final RestTemplate restTemplate = new RestTemplate();
-    private final String OPENAI_API_KEY = "your_openai_api_key";
-    private final String OPENAI_API_URL = "https://api.openai.com/v1/completions";
+    private final String API_KEY  = "weather.api.key";
+    private final String BASE_URL  = "https://api.openweathermap.org/data/2.5/forecast?q=";
 
-    public WeatherPredictionService(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
 
-    public String getWeatherPrediction() {
+    public String getWeatherPrediction(String city) {
+        String apiUrl = BASE_URL + city + "&appid=" + API_KEY + "&units=metric";
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.exchange(apiUrl, HttpMethod.GET, HttpEntity.EMPTY, String.class);
+        String responseBody = response.getBody();
+
         try {
+            JsonNode rootNode = new ObjectMapper().readTree(responseBody);
+            JsonNode list = rootNode.path("list");
+            StringBuilder forecast = new StringBuilder();
 
-            String prompt = "Provide a 3-day weather forecast for " + city + ".";
-
-
-            Map<String, Object> requestBody = new HashMap<>();
-            requestBody.put("model", "gpt-3.5-turbo"); // Use "gpt-4" if needed
-            requestBody.put("prompt", prompt);
-            requestBody.put("max_tokens", 150);
-            requestBody.put("temperature", 0.7);
-
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", "Bearer " + OPENAI_API_KEY);
-            headers.setContentType(MediaType.APPLICATION_JSON);
+            for (int i = 0; i < 40; i += 8) {
+                JsonNode dayForecast = list.get(i);
+                String date = dayForecast.path("dt_txt").asText();
+                double tempMax = dayForecast.path("main").path("temp_max").asDouble();
+                double tempMin = dayForecast.path("main").path("temp_min").asDouble();
+                String weatherDescription = dayForecast.path("weather").get(0).path("description").asText();
 
 
-            HttpEntity<String> entity;
-            try {
-                entity = new HttpEntity<>(new ObjectMapper().writeValueAsString(requestBody), headers);
-            } catch (Exception e) {
-                return "Error creating JSON request: " + e.getMessage();
+                forecast.append(String.format("Day %d: %s\nMax Temp: %.2f°C, Min Temp: %.2f°C\nWeather: %s\n\n",
+                        (i / 8) + 1, date, tempMax, tempMin, weatherDescription));
             }
 
-
-            ResponseEntity<String> openAIResponse = restTemplate.exchange(
-                    OPENAI_API_URL, HttpMethod.POST, entity, String.class);
-
-            return openAIResponse.getBody();
+            return forecast.toString();
         } catch (Exception e) {
-            return "Error retrieving weather data: " + e.getMessage();
+            return "Error fetching weather data: " + e.getMessage();
         }
     }
 }
