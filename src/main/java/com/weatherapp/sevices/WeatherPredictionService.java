@@ -1,36 +1,58 @@
 package com.weatherapp.sevices;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class WeatherPredictionService {
 
-    private  RestTemplate restTemplate;
-    private final String OPENAI_API_KEY = "spring.ai.openai.api-key";
-    private final String WEATHER_API_KEY = "weather.api.key";
-    private final String WEATHER_API_URL = "https://api.openweathermap.org/data/2.5/weather" + WEATHER_API_KEY;
+
+    private final RestTemplate restTemplate = new RestTemplate();
+    private final String OPENAI_API_KEY = "your_openai_api_key";
     private final String OPENAI_API_URL = "https://api.openai.com/v1/completions";
 
+    public WeatherPredictionService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
     public String getWeatherPrediction() {
+        try {
 
-        ResponseEntity<String> response = restTemplate.exchange(WEATHER_API_URL, HttpMethod.GET, null, String.class);
-        String weatherData = response.getBody(); // Extract weather data from response
+            String prompt = "Provide a 3-day weather forecast for " + city + ".";
 
-        String prompt = "Here is the weather forecast for London for the next 5 days: " + weatherData + "\n\nSummarize the weather predictions for these days.";
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer " + OPENAI_API_KEY);
-        headers.set("Content-Type", "application/json");
+            Map<String, Object> requestBody = new HashMap<>();
+            requestBody.put("model", "gpt-3.5-turbo"); // Use "gpt-4" if needed
+            requestBody.put("prompt", prompt);
+            requestBody.put("max_tokens", 150);
+            requestBody.put("temperature", 0.7);
 
-        HttpEntity<String> entity = new HttpEntity<>(String.format("{\"model\":\"text-davinci-003\", \"prompt\":\"%s\", \"max_tokens\":150}", prompt), headers);
 
-        ResponseEntity<String> openAIResponse = restTemplate.exchange(OPENAI_API_URL, HttpMethod.POST, entity, String.class);
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Authorization", "Bearer " + OPENAI_API_KEY);
+            headers.setContentType(MediaType.APPLICATION_JSON);
 
-        return openAIResponse.getBody();
+
+            HttpEntity<String> entity;
+            try {
+                entity = new HttpEntity<>(new ObjectMapper().writeValueAsString(requestBody), headers);
+            } catch (Exception e) {
+                return "Error creating JSON request: " + e.getMessage();
+            }
+
+
+            ResponseEntity<String> openAIResponse = restTemplate.exchange(
+                    OPENAI_API_URL, HttpMethod.POST, entity, String.class);
+
+            return openAIResponse.getBody();
+        } catch (Exception e) {
+            return "Error retrieving weather data: " + e.getMessage();
+        }
     }
 }
