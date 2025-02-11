@@ -61,19 +61,14 @@ public class WeatherResponse {
             }
 
             try {
-                String timezone = getTimeZone(lat, lon);
+
                 ZonedDateTime dateTime = Instant.ofEpochSecond(timestamp)
-                        .atZone(ZoneId.of(timezone));
+                        .atZone(ZoneId.of(lat + "," + lon));
                 return dateTime.format(DateTimeFormatter.ofPattern("hh:mm a"));
             } catch (Exception e) {
                 return "Unable to format time";
             }
-        }
 
-        @JsonIgnore
-        private String getTimeZone(double lat, double lon) {
-
-            return ZoneId.of("GMT").getId();
         }
     }
 
