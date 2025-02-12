@@ -5,8 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class WeatherService {
@@ -33,9 +31,19 @@ public class WeatherService {
             forecast.append("| Date/Time           | Temp (°C)|Feels Like(°C)|Weather|Wind Speed(m/s)|Wind Direction|Humidity(%)|Pressure(hPa)|\n");
             forecast.append("|---------------------|----------|--------------|-------|---------------|--------------|-----------|-------------|\n");
 
-            
+            String lastDate = "";
             for (JsonNode node : root.path("list")) {
                 String dateTime = node.path("dt_txt").asText();
+                String date = dateTime.split(" ")[0]; // Extract date (YYYY-MM-DD)
+
+                // Add a dashed line if the date changes
+                if (!date.equals(lastDate)) {
+                    if (!lastDate.isEmpty()) {
+                        forecast.append("|---------------------|----------|--------------|-------|---------------|--------------|-----------|-------------|\n");
+                    }
+                    lastDate = date; // Update the last date to the current date
+                }
+
                 double temp = node.path("main").path("temp").asDouble() - 273.15;
                 double feelsLike = node.path("main").path("feels_like").asDouble() - 273.15;
                 String weatherDesc = node.path("weather").get(0).path("description").asText();
@@ -47,14 +55,14 @@ public class WeatherService {
 
                 forecast.append(String.format("| %-19s | %6.2f°C | %6.2f°C     | %5s |  %6.2f m/s   | %-12s | %d        | %d        |\n",
                         dateTime, temp, feelsLike, weatherIcon, windSpeed, windDirection, humidity, pressure));
-
-
             }
+
             return forecast.toString();
         } catch (Exception e) {
             return "Error parsing weather data";
         }
     }
+
 
     private String getWeatherIcon(String weatherDescription) {
         return switch (weatherDescription.toLowerCase()) {
