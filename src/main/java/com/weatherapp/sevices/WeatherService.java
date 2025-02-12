@@ -1,67 +1,46 @@
 package com.weatherapp.sevices;
 
-import com.weatherapp.Models.WeatherResponse;
-import org.springframework.beans.factory.annotation.Value;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Service
 public class WeatherService {
 
-    private static final Logger logger = LoggerFactory.getLogger(WeatherService.class);
+    private static final String API_URL = "http://api.openweathermap.org/data/2.5/forecast?id=%d&appid=53736bf1c4c2be8a8f8443dc2a58be1f";
+    private final RestTemplate restTemplate;
+    private final ObjectMapper objectMapper;
 
-    @Value("${weather.api.key}")
-    public String apiKey;
-
-    @Value("${weather.api.url}")
-    public String apiUrl;
-
-    public WeatherResponse getWeather(String city) {
-
-        if (apiKey == null || apiKey.isEmpty()) {
-            throw new IllegalArgumentException("Weather API key is missing.");
-        }
-        if (apiUrl == null || apiUrl.isEmpty()) {
-            throw new IllegalArgumentException("Weather API URL is missing.");
-        }
-
-        String endPoint = String.format("%s/forecast?q=%s&appid=%s&units=metric", apiUrl, city, apiKey);
-        logger.info("Requesting weather data from: {}", endPoint);
-
-        RestTemplate restTemplate = new RestTemplate();
-
-        try {
-
-            WeatherResponse response = restTemplate.getForObject(endPoint, WeatherResponse.class);
-            if (response == null) {
-                throw new RuntimeException("No data received from API.");
-            }
-
-
-            return response;
-
-        } catch (RestClientException e) {
-            logger.error("Error fetching weather data: ", e);
-            throw new RuntimeException("Failed to fetch weather data. Please check your API key or endpoint configuration.");
-        }
+    public WeatherService(RestTemplate restTemplate, ObjectMapper objectMapper) {
+        this.restTemplate = restTemplate;
+        this.objectMapper = objectMapper;
     }
 
-    public String getDailyForecast(WeatherResponse response) {
-        StringBuilder forecast = new StringBuilder();
+    // Fetch weather forecast using the city ID
+    public String getWeatherForecastById(long cityId) {
+        String url = String.format(API_URL, cityId);
+        String jsonResponse = restTemplate.getForObject(url, String.class);
+        return parseWeatherData(jsonResponse);
+    }
 
+    private String parseWeatherData(String jsonResponse) {
+        try {
+            JsonNode root = objectMapper.readTree(jsonResponse);
+            StringBuilder forecast = new StringBuilder();
 
-        for (int i = 0; i < 5; i++) {
-            WeatherResponse.Forecast forecastData = response.getList().get(i * 8);
-            forecast.append(String.format("Day %d: %s\nMax Temp: %.2f°C, Min Temp: %.2f°C\nWeather: %s\n\n",
-                    i + 1, forecastData.getDt_txt(),
-                    forecastData.getMain().getTempMax(), forecastData.getMain().getTempMin(),
-                    forecastData.getWeather()[0].getDescription()));
+            for (JsonNode node : root.path("list")) {
+                String dateTime = node.path("dt_txt").asText();
+                double temp = node.path("main").path("temp").asDouble() - 273.15; // Convert Kelvin to Celsius
+                String weatherDesc = node.path("weather").get(0).path("description").asText();
+                double windSpeed = node.path("wind").path("speed").asDouble();
+
+                forecast.append(String.format("Date/Time: %s | Temp: %.2f°C | Weather: %s | Wind Speed: %.2fm/s\n",
+                        dateTime, temp, weatherDesc, windSpeed));
+            }
+            return forecast.toString();
+        } catch (Exception e) {
+            return "Error parsing weather data";
         }
-
-        return forecast.toString();
-
     }
 }
