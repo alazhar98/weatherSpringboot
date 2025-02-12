@@ -36,7 +36,6 @@ public class WeatherService {
                 String dateTime = node.path("dt_txt").asText();
                 String date = dateTime.split(" ")[0];
 
-                // Add a dashed line if the date changes
                 if (!date.equals(lastDate)) {
                     if (!lastDate.isEmpty()) {
                         forecast.append("|---------------------|----------|--------------|-------|---------------|--------------|-----------|-------------|-------|-------|\n");
