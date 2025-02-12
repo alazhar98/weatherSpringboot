@@ -33,7 +33,7 @@ public class WeatherService {
             forecast.append("| Date/Time           | Temp (°C)|Feels Like(°C)|Weather|Wind Speed(m/s)|Wind Direction|Humidity(%)|Pressure(hPa)|\n");
             forecast.append("|---------------------|----------|--------------|-------|---------------|--------------|-----------|-------------|\n");
 
-
+            
             for (JsonNode node : root.path("list")) {
                 String dateTime = node.path("dt_txt").asText();
                 double temp = node.path("main").path("temp").asDouble() - 273.15;
