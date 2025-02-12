@@ -28,20 +28,20 @@ public class WeatherService {
             JsonNode root = objectMapper.readTree(jsonResponse);
             StringBuilder forecast = new StringBuilder();
 
-            forecast.append("| Date/Time           | Temp (°C)|Feels Like(°C)|Weather|Wind Speed(m/s)|Wind Direction|Humidity(%)|Pressure(hPa)|\n");
-            forecast.append("|---------------------|----------|--------------|-------|---------------|--------------|-----------|-------------|\n");
+            forecast.append("| Date/Time           | Temp (°C)|Feels Like(°C)|Weather|Wind Speed(m/s)|Wind Direction|Humidity(%)|Pressure(hPa)|Sunrise|Sunset|\n");
+            forecast.append("|---------------------|----------|--------------|-------|---------------|--------------|-----------|-------------|-------|-------|\n");
 
             String lastDate = "";
             for (JsonNode node : root.path("list")) {
                 String dateTime = node.path("dt_txt").asText();
-                String date = dateTime.split(" ")[0]; // Extract date (YYYY-MM-DD)
+                String date = dateTime.split(" ")[0];
 
                 // Add a dashed line if the date changes
                 if (!date.equals(lastDate)) {
                     if (!lastDate.isEmpty()) {
-                        forecast.append("|---------------------|----------|--------------|-------|---------------|--------------|-----------|-------------|\n");
+                        forecast.append("|---------------------|----------|--------------|-------|---------------|--------------|-----------|-------------|-------|-------|\n");
                     }
-                    lastDate = date; // Update the last date to the current date
+                    lastDate = date;
                 }
 
                 double temp = node.path("main").path("temp").asDouble() - 273.15;
@@ -53,8 +53,15 @@ public class WeatherService {
                 String windDirection = getWindDirection(node.path("wind").path("deg").asInt());
                 String weatherIcon = getWeatherIcon(weatherDesc);
 
-                forecast.append(String.format("| %-19s | %6.2f°C | %6.2f°C     | %5s |  %6.2f m/s   | %-12s | %d        | %d        |\n",
-                        dateTime, temp, feelsLike, weatherIcon, windSpeed, windDirection, humidity, pressure));
+
+                long sunrise = root.path("city").path("sunrise").asLong();
+                long sunset = root.path("city").path("sunset").asLong();
+
+                String sunriseTime = formatTime(sunrise);
+                String sunsetTime = formatTime(sunset);
+
+                forecast.append(String.format("| %-19s | %6.2f°C | %6.2f°C     | %5s |  %6.2f m/s   | %-12s | %d        | %d        | %s  | %s  |\n",
+                        dateTime, temp, feelsLike, weatherIcon, windSpeed, windDirection, humidity, pressure, sunriseTime, sunsetTime));
             }
 
             return forecast.toString();
@@ -62,7 +69,6 @@ public class WeatherService {
             return "Error parsing weather data";
         }
     }
-
 
     private String getWeatherIcon(String weatherDescription) {
         return switch (weatherDescription.toLowerCase()) {
@@ -80,5 +86,12 @@ public class WeatherService {
     private String getWindDirection(int degrees) {
         String[] directions = {"N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"};
         return directions[(int) Math.round(((double) degrees % 360) / 22.5) % 16];
+    }
+
+
+    private String formatTime(long timestamp) {
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm");
+        java.util.Date resultDate = new java.util.Date(timestamp * 1000);
+        return sdf.format(resultDate);
     }
 }
