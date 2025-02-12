@@ -18,7 +18,7 @@ public class weatherController {
 
 
     @GetMapping("/weather-forecast")
-    public ResponseEntity<String> getWeatherForecast(@RequestParam long cityId) {
+    public ResponseEntity<String> getWeatherForecast(@RequestParam Long cityId ) {
         try {
             String forecast = weatherService.getWeatherForecastById(cityId);
             return ResponseEntity.ok(forecast);
