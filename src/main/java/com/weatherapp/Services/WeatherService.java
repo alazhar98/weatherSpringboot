@@ -90,7 +90,7 @@ public class WeatherService {
             default -> "🌍";
         };
     }
-
+    // Method to get the wind direction from the degree of the wind
     private String getWindDirection(int degrees) {
         String[] directions = {"N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"};
         return directions[(int) Math.round(((double) degrees % 360) / 22.5) % 16];
