@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 
-@Service
+@Service  // Marks this class as a Spring service, making it available for dependency injection
 public class WeatherService {
     private static final String API_URL = "http://api.openweathermap.org/data/2.5/forecast?id=%d&appid=53736bf1c4c2be8a8f8443dc2a58be1f";
     private final RestTemplate restTemplate;
