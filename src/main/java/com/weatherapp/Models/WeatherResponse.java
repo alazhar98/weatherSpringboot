@@ -42,7 +42,7 @@ public class WeatherResponse {
     }
     // Weather class representing the weather conditions like clear, rain, etc.
     @Data
-    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonIgnoreProperties(ignoreUnknown = true)// Ignore unknown properties during JSON deserialization
     public static class Weather {
         private String main;
         private String description;
