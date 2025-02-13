@@ -58,6 +58,7 @@ public class WeatherService {
                 String windDirection = getWindDirection(node.path("wind").path("deg").asInt());
                 String weatherIcon = getWeatherIcon(weatherDesc);
 
+                // Extract sunrise and sunset times and convert them to HH:mm format
 
                 long sunrise = root.path("city").path("sunrise").asLong();
                 long sunset = root.path("city").path("sunset").asLong();
