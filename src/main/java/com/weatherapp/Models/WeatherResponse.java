@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class WeatherResponse {
 
-    private String city;
+    private String city;// Name of the city
     private List<Forecast> list;
 
     // Ignore unknown properties
