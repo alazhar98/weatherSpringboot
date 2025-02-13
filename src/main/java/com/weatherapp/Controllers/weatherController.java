@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 //class as a REST controller
 public class weatherController {
+    // Injecting the WeatherService
     private final WeatherService weatherService;
 
     @Autowired
