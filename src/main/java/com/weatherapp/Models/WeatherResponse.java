@@ -14,7 +14,7 @@ public class WeatherResponse {
 
     // Ignore unknown properties
     @Data    // Automatically generates getter, setter, toString, equals, and hashCode methods using Lombok
-    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonIgnoreProperties(ignoreUnknown = true)// Ignore unknown properties during JSON deserialization
     public static class Forecast {
         private Main main;
         private Weather[] weather;
