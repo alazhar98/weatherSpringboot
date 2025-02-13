@@ -31,6 +31,7 @@ public class WeatherService {
             JsonNode root = objectMapper.readTree(jsonResponse); // Convert JSON string into JsonNode tree structure
             StringBuilder forecast = new StringBuilder();
 
+            // Add header for the table displaying weather data
             forecast.append("| Date/Time           | Temp (°C)|Feels Like(°C)|Weather|Wind Speed(m/s)|Wind Direction|Humidity(%)|Pressure(hPa)|Sunrise|Sunset|\n");
             forecast.append("|---------------------|----------|--------------|-------|---------------|--------------|-----------|-------------|-------|-------|\n");
 
