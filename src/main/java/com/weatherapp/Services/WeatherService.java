@@ -48,7 +48,7 @@ public class WeatherService {
                     lastDate = date;
                 }
 
-                // Extract weather details
+     
                 double temp = node.path("main").path("temp").asDouble() - 273.15;
                 double feelsLike = node.path("main").path("feels_like").asDouble() - 273.15;
                 String weatherDesc = node.path("weather").get(0).path("description").asText();
@@ -58,7 +58,7 @@ public class WeatherService {
                 String windDirection = getWindDirection(node.path("wind").path("deg").asInt());
                 String weatherIcon = getWeatherIcon(weatherDesc);
 
-                // Extract sunrise and sunset times and convert them to HH:mm format
+
 
                 long sunrise = root.path("city").path("sunrise").asLong();
                 long sunset = root.path("city").path("sunset").asLong();
@@ -66,7 +66,7 @@ public class WeatherService {
                 String sunriseTime = formatTime(sunrise);
                 String sunsetTime = formatTime(sunset);
 
-                // Format and append the weather details to the forecast string
+
                 forecast.append(String.format("| %-19s | %6.2f°C | %6.2f°C     | %5s |  %6.2f m/s   | %-12s | %d        | %d        | %s  | %s  |\n",
                         dateTime, temp, feelsLike, weatherIcon, windSpeed, windDirection, humidity, pressure, sunriseTime, sunsetTime));
             }
