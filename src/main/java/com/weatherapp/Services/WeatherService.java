@@ -101,6 +101,6 @@ public class WeatherService {
     private String formatTime(long timestamp) {
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm");// Convert Unix timestamp to Date
         java.util.Date resultDate = new java.util.Date(timestamp * 1000);
-        return sdf.format(resultDate);
+        return sdf.format(resultDate);// Format the date into the desired time format
     }
 }
