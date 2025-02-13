@@ -36,7 +36,7 @@ public class WeatherResponse {
     public static class Main {
         private double temp; // Current temperature
         private double tempMax; // Maximum temperature
-        private double tempMin;
+        private double tempMin; // Minimum temperature
         private double humidity;
         private double pressure;
     }
