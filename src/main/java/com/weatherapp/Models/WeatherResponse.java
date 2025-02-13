@@ -12,6 +12,7 @@ public class WeatherResponse {
     private String city;
     private List<Forecast> list;
 
+    // Ignore unknown properties
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Forecast {
