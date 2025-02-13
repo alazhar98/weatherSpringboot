@@ -13,7 +13,7 @@ public class WeatherService {
     private final RestTemplate restTemplate;// Used to send HTTP requests to external services
     private final ObjectMapper objectMapper;// Used to map JSON responses into Java objects
 
-
+    // Constructor with dependency injection for RestTemplate and ObjectMapper
     public WeatherService(RestTemplate restTemplate, ObjectMapper objectMapper) {
         this.restTemplate = restTemplate;
         this.objectMapper = objectMapper;
