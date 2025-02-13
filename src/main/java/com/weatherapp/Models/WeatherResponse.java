@@ -13,7 +13,7 @@ public class WeatherResponse {
     private List<Forecast> list;
 
     // Ignore unknown properties
-    @Data
+    @Data    // Automatically generates getter, setter, toString, equals, and hashCode methods using Lombok
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Forecast {
         private Main main;
