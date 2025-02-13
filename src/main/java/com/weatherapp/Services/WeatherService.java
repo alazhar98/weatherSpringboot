@@ -71,13 +71,13 @@ public class WeatherService {
                         dateTime, temp, feelsLike, weatherIcon, windSpeed, windDirection, humidity, pressure, sunriseTime, sunsetTime));
             }
 
-            return forecast.toString();// Return the formatted forecast string
+            return forecast.toString();
         } catch (Exception e) {
-            return "Error parsing weather data";// Return error message if parsing fails
+            return "Error parsing weather data";
         }
     }
 
-    // Method to return an appropriate weather icon based on the weather description
+
     private String getWeatherIcon(String weatherDescription) {
         return switch (weatherDescription.toLowerCase()) {
             case "clear sky", "sunny" -> "☀️";
@@ -90,17 +90,17 @@ public class WeatherService {
             default -> "🌍";
         };
     }
-    // Method to get the wind direction from the degree of the wind
+
     private String getWindDirection(int degrees) {
         String[] directions = {"N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"};
         return directions[(int) Math.round(((double) degrees % 360) / 22.5) % 16]; // Calculate wind direction
     }
 
 
-    // Method to format the timestamp into a human-readable time (HH:mm format)
+
     private String formatTime(long timestamp) {
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm");// Convert Unix timestamp to Date
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm");
         java.util.Date resultDate = new java.util.Date(timestamp * 1000);
-        return sdf.format(resultDate);// Format the date into the desired time format
+        return sdf.format(resultDate);
     }
 }
