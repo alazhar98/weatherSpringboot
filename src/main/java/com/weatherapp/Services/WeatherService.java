@@ -16,7 +16,7 @@ public class WeatherService {
 
     public WeatherService(RestTemplate restTemplate, ObjectMapper objectMapper) {
         this.restTemplate = restTemplate;
-        this.objectMapper = objectMapper;// Used to map JSON responses into Java objects
+        this.objectMapper = objectMapper;
     }
 
     public String getWeatherForecastById(long cityId) {
