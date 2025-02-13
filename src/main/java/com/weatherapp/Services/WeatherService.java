@@ -66,6 +66,7 @@ public class WeatherService {
                 String sunriseTime = formatTime(sunrise);
                 String sunsetTime = formatTime(sunset);
 
+                // Format and append the weather details to the forecast string
                 forecast.append(String.format("| %-19s | %6.2f°C | %6.2f°C     | %5s |  %6.2f m/s   | %-12s | %d        | %d        | %s  | %s  |\n",
                         dateTime, temp, feelsLike, weatherIcon, windSpeed, windDirection, humidity, pressure, sunriseTime, sunsetTime));
             }
