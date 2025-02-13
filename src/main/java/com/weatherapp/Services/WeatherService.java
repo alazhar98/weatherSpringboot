@@ -25,6 +25,7 @@ public class WeatherService {
         return parseWeatherData(jsonResponse); // Parse the response and return the formatted forecast
     }
 
+    // Method to parse the raw JSON response and format it as a string
     private String parseWeatherData(String jsonResponse) {
         try {
             JsonNode root = objectMapper.readTree(jsonResponse);
