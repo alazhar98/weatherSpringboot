@@ -30,7 +30,7 @@ public class WeatherResponse {
             return main.getTempMin();
         }
     }
-    // Forecast class representing each weather forecast entry
+    // Main class containing temperature, pressure, and humidity data
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)// Ignore unknown properties during JSON deserialization
     public static class Main {
