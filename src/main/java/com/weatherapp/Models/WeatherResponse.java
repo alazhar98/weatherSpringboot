@@ -34,7 +34,7 @@ public class WeatherResponse {
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)// Ignore unknown properties during JSON deserialization
     public static class Main {
-        private double temp;
+        private double temp; // Current temperature
         private double tempMax;
         private double tempMin;
         private double humidity;
