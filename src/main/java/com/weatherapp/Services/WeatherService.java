@@ -1,4 +1,4 @@
-package com.weatherapp.sevices;
+package com.weatherapp.Services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
