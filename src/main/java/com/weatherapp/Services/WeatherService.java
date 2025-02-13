@@ -15,7 +15,7 @@ public class WeatherService {
     // The URL template for the OpenWeather API, with a placeholder for the city ID and API key
     public WeatherService(RestTemplate restTemplate, ObjectMapper objectMapper) {
         this.restTemplate = restTemplate;// Used to send HTTP requests to external services
-        this.objectMapper = objectMapper;
+        this.objectMapper = objectMapper;// Used to map JSON responses into Java objects
     }
 
     public String getWeatherForecastById(long cityId) {
