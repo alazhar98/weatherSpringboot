@@ -71,7 +71,7 @@ public class WeatherService {
                         dateTime, temp, feelsLike, weatherIcon, windSpeed, windDirection, humidity, pressure, sunriseTime, sunsetTime));
             }
 
-            return forecast.toString();
+            return forecast.toString();// Return the formatted forecast string
         } catch (Exception e) {
             return "Error parsing weather data";
         }
