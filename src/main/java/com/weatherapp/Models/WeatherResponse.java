@@ -25,6 +25,7 @@ public class WeatherResponse {
             return main.getTempMax();
         }
 
+        // Method to get minimum temperature from the 'main' data
         public double getTempMin() {
             return main.getTempMin();
         }
