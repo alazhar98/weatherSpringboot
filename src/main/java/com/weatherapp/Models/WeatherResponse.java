@@ -10,7 +10,7 @@ import java.util.List;
 public class WeatherResponse {
 
     private String city;// Name of the city
-    private List<Forecast> list;
+    private List<Forecast> list; // List of weather forecasts
 
     // Ignore unknown properties
     @Data    // Automatically generates getter, setter, toString, equals, and hashCode methods using Lombok
