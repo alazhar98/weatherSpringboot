@@ -13,6 +13,7 @@ public class weatherController {
     // Injecting the WeatherService
     private final WeatherService weatherService;
 
+    //based injection of the WeatherService
     @Autowired
     public weatherController(WeatherService weatherService) {
         this.weatherService = weatherService;
