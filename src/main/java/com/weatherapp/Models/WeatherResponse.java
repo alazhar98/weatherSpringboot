@@ -29,7 +29,7 @@ public class WeatherResponse {
             return main.getTempMin();
         }
     }
-
+    // Forecast class representing each weather forecast entry
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Main {
