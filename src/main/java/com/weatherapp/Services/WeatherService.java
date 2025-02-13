@@ -10,10 +10,9 @@ import org.springframework.web.client.RestTemplate;
 public class WeatherService {
     // The URL template for the OpenWeather API, with a placeholder for the city ID and API key
     private static final String API_URL = "http://api.openweathermap.org/data/2.5/forecast?id=%d&appid=53736bf1c4c2be8a8f8443dc2a58be1f";
-    private final RestTemplate restTemplate;// Used to send HTTP requests to external services
-    private final ObjectMapper objectMapper;// Used to map JSON responses into Java objects
+    private final RestTemplate restTemplate;
+    private final ObjectMapper objectMapper;
 
-    // Constructor with dependency injection for RestTemplate and ObjectMapper
     public WeatherService(RestTemplate restTemplate, ObjectMapper objectMapper) {
         this.restTemplate = restTemplate;
         this.objectMapper = objectMapper;
