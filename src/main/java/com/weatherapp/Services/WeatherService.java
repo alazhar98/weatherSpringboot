@@ -73,7 +73,7 @@ public class WeatherService {
 
             return forecast.toString();// Return the formatted forecast string
         } catch (Exception e) {
-            return "Error parsing weather data";
+            return "Error parsing weather data";// Return error message if parsing fails
         }
     }
 
