@@ -77,6 +77,7 @@ public class WeatherService {
         }
     }
 
+    // Method to return an appropriate weather icon based on the weather description
     private String getWeatherIcon(String weatherDescription) {
         return switch (weatherDescription.toLowerCase()) {
             case "clear sky", "sunny" -> "☀️";
