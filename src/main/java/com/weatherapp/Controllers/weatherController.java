@@ -23,6 +23,7 @@ public class weatherController {
     @GetMapping("/weather-forecast")
     public ResponseEntity<String> getWeatherForecast(@RequestParam Long cityId ) {
         try {
+            // Call the service to get the weather forecast for a given city
             String forecast = weatherService.getWeatherForecastById(cityId);
             return ResponseEntity.ok(forecast);
         } catch (Exception e) {
