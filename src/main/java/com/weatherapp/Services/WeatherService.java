@@ -18,7 +18,7 @@ public class WeatherService {
         this.restTemplate = restTemplate;
         this.objectMapper = objectMapper;
     }
-
+    //Method to fetch and parse weather forecast data for a given city ID
     public String getWeatherForecastById(long cityId) {
         String url = String.format(API_URL, cityId);
         String jsonResponse = restTemplate.getForObject(url, String.class);
