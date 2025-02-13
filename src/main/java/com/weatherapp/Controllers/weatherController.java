@@ -19,7 +19,7 @@ public class weatherController {
         this.weatherService = weatherService;
     }
 
-
+    // Mapping HTTP GET request
     @GetMapping("/weather-forecast")
     public ResponseEntity<String> getWeatherForecast(@RequestParam Long cityId ) {
         try {
