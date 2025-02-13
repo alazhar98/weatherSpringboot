@@ -20,7 +20,7 @@ public class WeatherService {
     }
     //Method to fetch and parse weather forecast data for a given city ID
     public String getWeatherForecastById(long cityId) {
-        String url = String.format(API_URL, cityId);
+        String url = String.format(API_URL, cityId);// Construct the API URL using the city ID
         String jsonResponse = restTemplate.getForObject(url, String.class);
         return parseWeatherData(jsonResponse);
     }
