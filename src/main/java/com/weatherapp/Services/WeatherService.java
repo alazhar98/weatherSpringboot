@@ -99,7 +99,7 @@ public class WeatherService {
 
     // Method to format the timestamp into a human-readable time (HH:mm format)
     private String formatTime(long timestamp) {
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm");
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm");// Convert Unix timestamp to Date
         java.util.Date resultDate = new java.util.Date(timestamp * 1000);
         return sdf.format(resultDate);
     }
