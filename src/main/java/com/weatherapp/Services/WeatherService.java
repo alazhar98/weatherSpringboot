@@ -48,6 +48,7 @@ public class WeatherService {
                     lastDate = date;
                 }
 
+                // Extract weather details
                 double temp = node.path("main").path("temp").asDouble() - 273.15;
                 double feelsLike = node.path("main").path("feels_like").asDouble() - 273.15;
                 String weatherDesc = node.path("weather").get(0).path("description").asText();
