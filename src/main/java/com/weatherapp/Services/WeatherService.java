@@ -95,9 +95,9 @@ public class WeatherService {
         String[] directions = {"N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"};
         return directions[(int) Math.round(((double) degrees % 360) / 22.5) % 16]; // Calculate wind direction
     }
-    }
 
 
+    // Method to format the timestamp into a human-readable time (HH:mm format)
     private String formatTime(long timestamp) {
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm");
         java.util.Date resultDate = new java.util.Date(timestamp * 1000);
