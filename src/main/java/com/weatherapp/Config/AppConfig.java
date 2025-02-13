@@ -8,11 +8,11 @@ import org.springframework.web.client.RestTemplate;
 //  configuration class
 public class AppConfig {
 
-    //Declares a RestTemplate bean
+
     @Bean
     public RestTemplate restTemplate() {
 
-        // Returns a new instance of RestTemplate
+
         return new RestTemplate();
     }
 }
