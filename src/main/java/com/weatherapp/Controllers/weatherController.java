@@ -28,7 +28,7 @@ public class weatherController {
 
             return ResponseEntity.ok(forecast);
         } catch (Exception e) {
-            // In case of error, return an internal server error
+
             return ResponseEntity.status(500).body("Error fetching weather data: " + e.getMessage());
         }
     }
