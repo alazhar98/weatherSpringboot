@@ -45,6 +45,6 @@ public class WeatherResponse {
     @JsonIgnoreProperties(ignoreUnknown = true)// Ignore unknown properties during JSON deserialization
     public static class Weather {
         private String main;// Main weather condition
-        private String description;
+        private String description; // Description of the weather condition
     }
 }
