@@ -36,6 +36,7 @@ public class WeatherService {
             forecast.append("|---------------------|----------|--------------|-------|---------------|--------------|-----------|-------------|-------|-------|\n");
 
             String lastDate = "";
+            // Loop through the list of forecasts and format them
             for (JsonNode node : root.path("list")) {
                 String dateTime = node.path("dt_txt").asText();
                 String date = dateTime.split(" ")[0];
