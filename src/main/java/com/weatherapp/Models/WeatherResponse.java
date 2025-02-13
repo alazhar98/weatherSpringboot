@@ -31,7 +31,7 @@ public class WeatherResponse {
     }
     // Forecast class representing each weather forecast entry
     @Data
-    @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonIgnoreProperties(ignoreUnknown = true)// Ignore unknown properties during JSON deserialization
     public static class Main {
         private double temp;
         private double tempMax;
