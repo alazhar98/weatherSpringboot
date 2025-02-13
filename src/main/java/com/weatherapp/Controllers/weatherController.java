@@ -25,6 +25,7 @@ public class weatherController {
         try {
             // Call the service to get the weather forecast for a given city
             String forecast = weatherService.getWeatherForecastById(cityId);
+            // Return the forecast as a successful response
             return ResponseEntity.ok(forecast);
         } catch (Exception e) {
             return ResponseEntity.status(500).body("Error fetching weather data: " + e.getMessage());
