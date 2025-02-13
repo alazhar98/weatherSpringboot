@@ -38,7 +38,7 @@ public class WeatherResponse {
         private double tempMax; // Maximum temperature
         private double tempMin; // Minimum temperature
         private double humidity; // Humidity percentage
-        private double pressure;
+        private double pressure;// Atmospheric pressure
     }
 
     @Data
