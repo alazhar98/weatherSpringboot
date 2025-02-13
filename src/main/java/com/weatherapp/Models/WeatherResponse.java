@@ -20,7 +20,7 @@ public class WeatherResponse {
         private Weather[] weather; // Weather details
         private String dt_txt;
 
-
+        // Method to get maximum temperature from the 'main' data
         public double getTempMax() {
             return main.getTempMax();
         }
