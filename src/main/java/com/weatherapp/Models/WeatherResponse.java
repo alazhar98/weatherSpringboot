@@ -40,7 +40,7 @@ public class WeatherResponse {
         private double humidity; // Humidity percentage
         private double pressure;// Atmospheric pressure
     }
-
+    // Weather class representing the weather conditions like clear, rain, etc.
     @Data
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Weather {
