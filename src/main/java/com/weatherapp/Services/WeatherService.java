@@ -25,18 +25,18 @@ public class WeatherService {
         return parseWeatherData(jsonResponse); // Parse the response and return the formatted forecast
     }
 
-    // Method to parse the raw JSON response and format it as a string
+
     private String parseWeatherData(String jsonResponse) {
         try {
-            JsonNode root = objectMapper.readTree(jsonResponse); // Convert JSON string into JsonNode tree structure
+            JsonNode root = objectMapper.readTree(jsonResponse);
             StringBuilder forecast = new StringBuilder();
 
-            // Add header for the table displaying weather data
+
             forecast.append("| Date/Time           | Temp (°C)|Feels Like(°C)|Weather|Wind Speed(m/s)|Wind Direction|Humidity(%)|Pressure(hPa)|Sunrise|Sunset|\n");
             forecast.append("|---------------------|----------|--------------|-------|---------------|--------------|-----------|-------------|-------|-------|\n");
 
             String lastDate = "";
-            // Loop through the list of forecasts and format them
+
             for (JsonNode node : root.path("list")) {
                 String dateTime = node.path("dt_txt").asText();
                 String date = dateTime.split(" ")[0];
@@ -48,7 +48,7 @@ public class WeatherService {
                     lastDate = date;
                 }
 
-     
+
                 double temp = node.path("main").path("temp").asDouble() - 273.15;
                 double feelsLike = node.path("main").path("feels_like").asDouble() - 273.15;
                 String weatherDesc = node.path("weather").get(0).path("description").asText();
