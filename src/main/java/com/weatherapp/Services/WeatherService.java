@@ -5,11 +5,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class WeatherService {
 
-    private static final String API_URL = "http://api.openweathermap.org/data/2.5/forecast?id=%d&appid=53736bf1c4c2be8a8f8443dc2a58be1f";
+    private static final String API_URL = "http://api.openweathermap.org/data/2.5/forecast?q=%s&appid=53736bf1c4c2be8a8f8443dc2a58be1f";
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
 
@@ -18,88 +22,58 @@ public class WeatherService {
         this.objectMapper = objectMapper;
     }
 
-    public String getWeatherForecastById(long cityId) {
-        String url = String.format(API_URL, cityId);
+    public Map<String, Object> getWeatherForecastByName(String cityName) {
+        String url = String.format(API_URL, cityName);
         String jsonResponse = restTemplate.getForObject(url, String.class);
         return parseWeatherData(jsonResponse);
     }
 
-
-    private String parseWeatherData(String jsonResponse) {
+    private Map<String, Object> parseWeatherData(String jsonResponse) {
+        Map<String, Object> weatherData = new HashMap<>();
         try {
             JsonNode root = objectMapper.readTree(jsonResponse);
-            StringBuilder forecast = new StringBuilder();
 
+            // Extract relevant data
+            String cityName = root.path("city").path("name").asText();
+            String country = root.path("city").path("country").asText();
+            double temp = root.path("list").get(0).path("main").path("temp").asDouble() - 273.15;
+            double feelsLike = root.path("list").get(0).path("main").path("feels_like").asDouble() - 273.15;
+            String weatherMain = root.path("list").get(0).path("weather").get(0).path("main").asText();
+            double tempMin = root.path("list").get(0).path("main").path("temp_min").asDouble() - 273.15;
+            double tempMax = root.path("list").get(0).path("main").path("temp_max").asDouble() - 273.15;
+            int humidity = root.path("list").get(0).path("main").path("humidity").asInt();
+            double pressure = root.path("list").get(0).path("main").path("pressure").asDouble();
+            double windSpeed = root.path("list").get(0).path("wind").path("speed").asDouble();
+            long sunrise = root.path("city").path("sunrise").asLong();
+            long sunset = root.path("city").path("sunset").asLong();
 
-            forecast.append("| Date/Time           | Temp (°C)|Feels Like(°C)|Weather|Wind Speed(m/s)|Wind Direction|Humidity(%)|Pressure(hPa)|Sunrise|Sunset|\n");
-            forecast.append("|---------------------|----------|--------------|-------|---------------|--------------|-----------|-------------|-------|-------|\n");
+            // Format sunrise and sunset times
+            String sunriseTime = formatTime(sunrise);
+            String sunsetTime = formatTime(sunset);
 
-            String lastDate = "";
+            // Populate the weatherData map
+            weatherData.put("name", cityName);
+            weatherData.put("country", country);
+            weatherData.put("temp", Math.round(temp));
+            weatherData.put("feels_like", Math.round(feelsLike));
+            weatherData.put("weather_main", weatherMain);
+            weatherData.put("temp_min", Math.floor(tempMin));
+            weatherData.put("temp_max", Math.ceil(tempMax));
+            weatherData.put("humidity", humidity);
+            weatherData.put("pressure", pressure);
+            weatherData.put("wind_speed", windSpeed);
+            weatherData.put("sunrise", sunriseTime);
+            weatherData.put("sunset", sunsetTime);
+            weatherData.put("updated_on", new SimpleDateFormat("HH:mm").format(new Date()));
 
-            for (JsonNode node : root.path("list")) {
-                String dateTime = node.path("dt_txt").asText();
-                String date = dateTime.split(" ")[0];
-
-                if (!date.equals(lastDate)) {
-                    if (!lastDate.isEmpty()) {
-                        forecast.append("|---------------------|----------|--------------|-------|---------------|--------------|-----------|-------------|-------|-------|\n");
-                    }
-                    lastDate = date;
-                }
-
-
-                double temp = node.path("main").path("temp").asDouble() - 273.15;
-                double feelsLike = node.path("main").path("feels_like").asDouble() - 273.15;
-                String weatherDesc = node.path("weather").get(0).path("description").asText();
-                double windSpeed = node.path("wind").path("speed").asDouble();
-                int humidity = node.path("main").path("humidity").asInt();
-                int pressure = node.path("main").path("pressure").asInt();
-                String windDirection = getWindDirection(node.path("wind").path("deg").asInt());
-                String weatherIcon = getWeatherIcon(weatherDesc);
-
-
-
-                long sunrise = root.path("city").path("sunrise").asLong();
-                long sunset = root.path("city").path("sunset").asLong();
-
-                String sunriseTime = formatTime(sunrise);
-                String sunsetTime = formatTime(sunset);
-
-
-                forecast.append(String.format("| %-19s | %6.2f°C | %6.2f°C     | %5s |  %6.2f m/s   | %-12s | %d        | %d        | %s  | %s  |\n",
-                        dateTime, temp, feelsLike, weatherIcon, windSpeed, windDirection, humidity, pressure, sunriseTime, sunsetTime));
-            }
-
-            return forecast.toString();
         } catch (Exception e) {
-            return "Error parsing weather data";
+            weatherData.put("error", "Error parsing weather data: " + e.getMessage());
         }
+        return weatherData;
     }
-
-
-    private String getWeatherIcon(String weatherDescription) {
-        return switch (weatherDescription.toLowerCase()) {
-            case "clear sky", "sunny" -> "☀️";
-            case "few clouds", "scattered clouds", "broken clouds" -> "⛅";
-            case "overcast clouds", "cloudy" -> "☁️";
-            case "shower rain", "rain", "moderate rain", "heavy rain" -> "🌧️";
-            case "thunderstorm" -> "⛈️";
-            case "snow", "light snow", "moderate snow", "heavy snow" -> "❄️";
-            case "mist", "fog", "haze" -> "🌫️";
-            default -> "🌍";
-        };
-    }
-
-    private String getWindDirection(int degrees) {
-        String[] directions = {"N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"};
-        return directions[(int) Math.round(((double) degrees % 360) / 22.5) % 16]; // Calculate wind direction
-    }
-
-
 
     private String formatTime(long timestamp) {
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("HH:mm");
-        java.util.Date resultDate = new java.util.Date(timestamp * 1000);
-        return sdf.format(resultDate);
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        return sdf.format(new Date(timestamp * 1000));
     }
 }
