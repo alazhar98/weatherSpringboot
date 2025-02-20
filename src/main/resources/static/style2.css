@@ -6,7 +6,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+/* Body styling */
 body {
   font-family: 'Roboto', sans-serif;
   background-image: url("../images/bg.jpg");
