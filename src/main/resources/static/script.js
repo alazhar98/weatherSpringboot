@@ -71,6 +71,7 @@ function showWeaterReport(weather) {
     `;
      // Change the background image based on the weather condition
     changeBg(weather.weather_main);
+      // Reset the input box
     reset();
 }
 
