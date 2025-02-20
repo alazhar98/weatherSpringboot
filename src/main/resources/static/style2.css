@@ -16,7 +16,7 @@ body {
   background-position: bottom center;/* Position the background image */
   background-size: cover; /* Scale the background image to cover the entire body */
 }
-
+/* Header styling */
 .header h4 {
   color: rgb(123, 94, 227);
   font-weight: 700;
