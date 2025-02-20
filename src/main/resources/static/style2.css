@@ -10,7 +10,7 @@
 body {
   font-family: 'Roboto', sans-serif; /* Set the default font family */
   background-image: url("../images/bg.jpg");/* Set the background image */
-  min-height: 92vh;
+  min-height: 92vh;/* Set a minimum height for the body */
   overflow: auto;
   background-repeat: no-repeat;
   background-position: bottom center;
