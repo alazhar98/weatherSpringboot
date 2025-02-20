@@ -21,7 +21,7 @@
   height: 590px;
   width: 100%;
 }
-
+/* Centered box for content */
 .centered-box {
   text-align: center;
   position: fixed;
