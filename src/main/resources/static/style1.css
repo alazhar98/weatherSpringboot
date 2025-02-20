@@ -65,7 +65,7 @@
   border-radius: 20px;/* Rounded corners for the button */
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);/* Add a shadow effect */
   font-weight: bold; /* Make the text bold */
-  cursor: pointer;
+  cursor: pointer;/* Change the cursor to a pointer on hover */
 }
 
 .para {
