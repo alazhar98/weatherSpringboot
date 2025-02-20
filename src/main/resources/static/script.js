@@ -69,7 +69,7 @@ function showWeaterReport(weather) {
         <div class="basic">Feels like ${weather.feels_like}&deg;C | Humidity ${weather.humidity}%  <br> Pressure ${weather.pressure} mb | Wind ${weather.wind_speed} KMPH</div>
     </div>
     `;
-
+     // Change the background image based on the weather condition
     changeBg(weather.weather_main);
     reset();
 }
