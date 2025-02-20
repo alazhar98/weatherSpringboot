@@ -23,19 +23,16 @@ document.addEventListener('DOMContentLoaded', function () {
                     return response.json(); // Parse response as JSON
                 })
                 .then(data => {
-                // Log the received weather data for debugging
-                    console.log("Weather data received:", data); // Debugging
-                    showWeaterReport(data);// Log the received weather data for debugging
+                    console.log("Weather data received:", data);
+                    showWeaterReport(data);
                 })
                 .catch(error => {
-                    // Log any errors that occur during the fetch operation
-                    console.error("Error fetching weather data:", error); // Debugging
-                    // Show an error message using SweetAlert
+                    console.error("Error fetching weather data:", error);
+
                     swal("Error", "Failed to fetch weather data: " + error.message, "error");
                 });
         });
     } else {
-          // Log an error if the search button is not found
         console.error("Search button not found!");
     }
 });
