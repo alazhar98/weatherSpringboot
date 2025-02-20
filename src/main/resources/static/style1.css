@@ -60,7 +60,7 @@
   width: 120px;/* Set the width of the button */
   padding: 10px;/* Add padding inside the button */
   margin: 50px;/* Add margin around the button */
-  margin-bottom: 30px;
+  margin-bottom: 30px;/* Add extra margin at the bottom */
   border: 0;
   border-radius: 20px;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
