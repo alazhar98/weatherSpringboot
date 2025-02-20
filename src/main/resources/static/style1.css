@@ -39,17 +39,17 @@
 .inner-bg {
   text-align: center;/* Center-align the content */
 }
-/* Logo image styling */
+
 
 .logo {
-  width: 200px;/* Set the width of the logo */
+  width: 200px;
 }
-/* Content section styling */
+
 .content {
-  text-align: center;/* Center-align the text */
-  height: 50px;/* Fixed height for the content */
-  color: rgb(123, 94, 227); /* Set the text color */
-  text-shadow: 0 0 10px rgb(255, 255, 255), 0 0 20px #ffffff, 0 0 30px #ffffff;/* Add a text shadow effect */
+  text-align: center;
+  height: 50px;
+  color: rgb(123, 94, 227);
+  text-shadow: 0 0 10px rgb(255, 255, 255), 0 0 20px #ffffff, 0 0 30px #ffffff;
 }
 
 .btn {
