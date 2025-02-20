@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .catch(error => {
                     // Log any errors that occur during the fetch operation
                     console.error("Error fetching weather data:", error); // Debugging
+                    // Show an error message using SweetAlert
                     swal("Error", "Failed to fetch weather data: " + error.message, "error");
                 });
         });
