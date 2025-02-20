@@ -15,7 +15,7 @@
 .outer-bg {
   border-radius: 15px;/* Rounded corners for the container */
   background-image: url(../images/background.jpeg);/* Set the background image */
-  background-position: center;
+  background-position: center;/* Center the background image */
   background-repeat: no-repeat;
   background-size: contain;
   height: 590px;
