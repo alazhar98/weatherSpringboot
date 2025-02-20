@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
         });
     } else {
+          // Log an error if the search button is not found
         console.error("Search button not found!"); // Debugging
     }
 });
