@@ -11,15 +11,15 @@
   filter: blur(5px);
   z-index: -1;
 }
-/* Outer background container */
+
 .outer-bg {
-  border-radius: 15px;/* Rounded corners for the container */
-  background-image: url(../images/background.jpeg);/* Set the background image */
-  background-position: center;/* Center the background image */
-  background-repeat: no-repeat;/* Prevent the image from repeating */
-  background-size: contain;/* Scale the image to fit within the container */
-  height: 590px;/* Fixed height for the container */
-  width: 100%;/* Full width of the container */
+  border-radius: 15px;
+  background-image: url(../images/background.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 590px;
+  width: 100%;
 }
 
 .centered-box {
