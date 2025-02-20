@@ -128,7 +128,7 @@ function reset() {
     let input = document.getElementById('input-box');
     input.value = "";
 }
-
+// Helper function to add a leading zero to single-digit numbers
 function addZero(i) {
     if (i < 10) {
         i = "0" + i;
