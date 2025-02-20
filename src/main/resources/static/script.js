@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 swal("Invalid Input", "Please enter a valid City Name.", "error");
                 return;
             }
-
+             // Log the city name for debugging purposes
             console.log("Fetching weather data for City:", cityName); // Debugging
 
             fetch(`http://localhost:8080/weather-forecast?cityName=${encodeURIComponent(cityName)}`)
