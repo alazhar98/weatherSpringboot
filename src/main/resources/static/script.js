@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => {
                 // Log the received weather data for debugging
                     console.log("Weather data received:", data); // Debugging
-                    showWeaterReport(data); // Call the function to display weather data
+                    showWeaterReport(data);// Log the received weather data for debugging
                 })
                 .catch(error => {
                     console.error("Error fetching weather data:", error); // Debugging
