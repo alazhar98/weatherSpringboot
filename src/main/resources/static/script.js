@@ -91,7 +91,7 @@ function dateManage(dateArg) {
     let day = days[dateArg.getDay()];
     return `${date} ${month} (${day}) , ${year}`;
 }
-
+// Function to change the background image based on the weather condition
 function changeBg(status) {
     const backgrounds = {
         'Clouds': 'url(../images/clouds.jpeg)',
