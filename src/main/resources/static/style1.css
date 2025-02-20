@@ -35,7 +35,7 @@
   backdrop-filter: blur(10px);/* Apply a blur effect to the box background */
   box-shadow: 0 0 20px rgba(75, 31, 31, 0.4); /* Add a shadow effect */
 }
-
+/* Inner background for the logo */
 .inner-bg {
   text-align: center;
 }
