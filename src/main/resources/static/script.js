@@ -81,7 +81,7 @@ function getTime(todayDate) {
     let minute = addZero(todayDate.getMinutes());
     return `${hour}:${minute}`;
 }
-
+// Helper function to format the date in a readable way
 function dateManage(dateArg) {
     let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
