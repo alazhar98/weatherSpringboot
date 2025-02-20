@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
         buttonPress.addEventListener('click', function () {
             // Get the city name from the input box and trim any extra spaces
             const cityName = document.getElementById('input-box').value.trim();
+            // Check if the city name is empty
             if (!cityName) {
                 swal("Invalid Input", "Please enter a valid City Name.", "error");
                 return;
