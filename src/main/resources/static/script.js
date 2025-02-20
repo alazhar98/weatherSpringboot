@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 // Function to display the weather report
 function showWeaterReport(weather) {
+     // Get the weather body element by its ID
     let weatherBody = document.getElementById('weather-body');
     if (!weatherBody) {
         console.error("Weather body element not found!"); // Debugging
