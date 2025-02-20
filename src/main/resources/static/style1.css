@@ -30,14 +30,14 @@
   height: 400px;/* Fixed height for the box */
   width: 250px;/* Fixed width for the box */
   transform: translate(-50%, -50%);/* Center the box precisely */
-  padding: 20px; /* Add padding inside the box */
-  border-radius: 20px;/* Rounded corners for the box */
-  backdrop-filter: blur(10px);/* Apply a blur effect to the box background */
-  box-shadow: 0 0 20px rgba(75, 31, 31, 0.4); /* Add a shadow effect */
+  padding: 20px; 
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(75, 31, 31, 0.4);
 }
-/* Inner background for the logo */
+
 .inner-bg {
-  text-align: center;/* Center-align the content */
+  text-align: center;
 }
 
 
