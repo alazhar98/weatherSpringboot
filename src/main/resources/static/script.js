@@ -51,7 +51,7 @@ function showWeaterReport(weather) {
      // Make the weather body visible
     weatherBody.style.display = 'block';
     let todayDate = new Date();
-
+    // Update the inner HTML of the weather body with the weather data
     weatherBody.innerHTML =
         `
     <div class="location-deatils">
