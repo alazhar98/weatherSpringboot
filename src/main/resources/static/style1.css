@@ -62,7 +62,7 @@
   margin: 50px;/* Add margin around the button */
   margin-bottom: 30px;/* Add extra margin at the bottom */
   border: 0;/* Remove the button border */
-  border-radius: 20px;
+  border-radius: 20px;/* Rounded corners for the button */
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
   font-weight: bold;
   cursor: pointer;
