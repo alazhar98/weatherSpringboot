@@ -48,7 +48,7 @@
 .content {
   text-align: center;/* Center-align the text */
   height: 50px;/* Fixed height for the content */
-  color: rgb(123, 94, 227);
+  color: rgb(123, 94, 227); /* Set the text color */
   text-shadow: 0 0 10px rgb(255, 255, 255), 0 0 20px #ffffff, 0 0 30px #ffffff;
 }
 
