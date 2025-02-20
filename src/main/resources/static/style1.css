@@ -1,6 +1,6 @@
 /* Background image with blur effect */
 .bg-img {
-  background-image: url(../images/background.jpeg);
+  background-image: url(../images/background.jpeg);/* Set the background image */
   position: fixed;
   left: 0;
   width: 100%;
