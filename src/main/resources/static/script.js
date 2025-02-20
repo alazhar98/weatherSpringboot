@@ -108,7 +108,7 @@ function changeBg(status) {
     // Set the background image or use a default if the status is not found
     document.body.style.backgroundImage = backgrounds[status] || 'url(../images/bg1.jpeg)';
 }
-
+// Function to get the appropriate Font Awesome icon class based on the weather condition
 function getIconClass(classarg) {
     const icons = {
         'Rain': 'fas fa-cloud-showers-heavy',
