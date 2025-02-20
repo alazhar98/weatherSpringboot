@@ -123,7 +123,7 @@ function getIconClass(classarg) {
     // Return the appropriate icon class or a default if the condition is not found
     return icons[classarg] || 'fas fa-cloud-sun';
 }
-
+// Function to reset the input box after fetching weather data
 function reset() {
     let input = document.getElementById('input-box');
     input.value = "";
