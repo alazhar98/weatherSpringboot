@@ -8,7 +8,7 @@
   background-position: center;/* Center the background image */
   background-repeat: no-repeat;/* Prevent the image from repeating */
   background-size: cover; /* Scale the image to cover the entire area */
-  filter: blur(5px);
+  filter: blur(5px); /* Apply a blur effect to the background */
   z-index: -1;
 }
 
