@@ -31,7 +31,7 @@
   width: 250px;/* Fixed width for the box */
   transform: translate(-50%, -50%);/* Center the box precisely */
   padding: 20px; /* Add padding inside the box */
-  border-radius: 20px;
+  border-radius: 20px;/* Rounded corners for the box */
   backdrop-filter: blur(10px);
   box-shadow: 0 0 20px rgba(75, 31, 31, 0.4);
 }
