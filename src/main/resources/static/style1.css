@@ -53,7 +53,7 @@
 }
 /* Button styling */
 .btn {
-  background-image: url(../images/_berenice_.gif);
+  background-image: url(../images/_berenice_.gif);/* Set the button background image */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
