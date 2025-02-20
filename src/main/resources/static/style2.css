@@ -16,9 +16,10 @@ body {
   background-position: bottom center;/* Position the background image */
   background-size: cover; /* Scale the background image to cover the entire body */
 }
+
 /* Header styling */
 .header h4 {
-  color: rgb(123, 94, 227);
+  color: rgb(123, 94, 227);/* Set the text color */
   font-weight: 700;
   font-size: 2.4rem;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
