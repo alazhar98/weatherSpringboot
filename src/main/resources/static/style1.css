@@ -16,7 +16,7 @@
   border-radius: 15px;/* Rounded corners for the container */
   background-image: url(../images/background.jpeg);/* Set the background image */
   background-position: center;/* Center the background image */
-  background-repeat: no-repeat;
+  background-repeat: no-repeat;/* Prevent the image from repeating */
   background-size: contain;
   height: 590px;
   width: 100%;
