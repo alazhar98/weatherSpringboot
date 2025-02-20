@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     showWeaterReport(data);// Log the received weather data for debugging
                 })
                 .catch(error => {
+                    // Log any errors that occur during the fetch operation
                     console.error("Error fetching weather data:", error); // Debugging
                     swal("Error", "Failed to fetch weather data: " + error.message, "error");
                 });
