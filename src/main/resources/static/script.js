@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     return response.json(); // Parse response as JSON
                 })
                 .then(data => {
+                // Log the received weather data for debugging
                     console.log("Weather data received:", data); // Debugging
                     showWeaterReport(data); // Call the function to display weather data
                 })
