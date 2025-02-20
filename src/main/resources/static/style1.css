@@ -23,7 +23,7 @@
 }
 /* Centered box for content */
 .centered-box {
-  text-align: center;
+  text-align: center; /* Center-align the text */
   position: fixed;
   top: 50%;
   left: 50%;
