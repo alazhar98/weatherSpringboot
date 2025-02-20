@@ -29,7 +29,7 @@
   left: 50%;/* Position the box at 50% from the left */
   height: 400px;/* Fixed height for the box */
   width: 250px;/* Fixed width for the box */
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);/* Center the box precisely */
   padding: 20px;
   border-radius: 20px;
   backdrop-filter: blur(10px);
