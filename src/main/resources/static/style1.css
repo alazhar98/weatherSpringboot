@@ -46,7 +46,7 @@
 }
 /* Content section styling */
 .content {
-  text-align: center;
+  text-align: center;/* Center-align the text */
   height: 50px;
   color: rgb(123, 94, 227);
   text-shadow: 0 0 10px rgb(255, 255, 255), 0 0 20px #ffffff, 0 0 30px #ffffff;
