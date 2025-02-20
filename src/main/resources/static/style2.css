@@ -6,22 +6,22 @@
   padding: 0;
   box-sizing: border-box;
 }
-/* Body styling */
+
 body {
-  font-family: 'Roboto', sans-serif; /* Set the default font family */
-  background-image: url("../images/bg.jpg");/* Set the background image */
-  min-height: 92vh;/* Set a minimum height for the body */
-  overflow: auto;/* Allow scrolling if content overflows */
-  background-repeat: no-repeat; /* Prevent the background image from repeating */
-  background-position: bottom center;/* Position the background image */
-  background-size: cover; /* Scale the background image to cover the entire body */
+  font-family: 'Roboto', sans-serif;
+  background-image: url("../images/bg.jpg");
+  min-height: 92vh;
+  overflow: auto;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: cover;
 }
 
-/* Header styling */
+
 .header h4 {
-  color: rgb(123, 94, 227);/* Set the text color */
-  font-weight: 700;/* Set the font weight */
-  font-size: 2.4rem;/* Set the font size */
+  color: rgb(123, 94, 227);
+  font-weight: 700;
+  font-size: 2.4rem;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
