@@ -1,24 +1,20 @@
 // Wait for the DOM to be fully loaded before executing the script
 document.addEventListener('DOMContentLoaded', function () {
-    // Get the search button element by its ID
     let buttonPress = document.getElementById('btn');
     if (buttonPress) {
-               // Add a click event listener to the search button
         buttonPress.addEventListener('click', function () {
-            // Get the city name from the input box and trim any extra spaces
             const cityName = document.getElementById('input-box').value.trim();
-            // Check if the city name is empty
+
             if (!cityName) {
-                // Show an error message using SweetAlert if the input is invalid
                 swal("Invalid Input", "Please enter a valid City Name.", "error");
                 return;
             }
-             // Log the city name for debugging purposes
-            console.log("Fetching weather data for City:", cityName); // Debugging
+
+            console.log("Fetching weather data for City:", cityName);
 
             fetch(`http://localhost:8080/weather-forecast?cityName=${encodeURIComponent(cityName)}`)
                 .then(response => {
-                               // Check if the response is not OK (e.g., 404 or 500 error)
+
                     if (!response.ok) throw new Error('Network response was not ok');
                     return response.json(); // Parse response as JSON
                 })
