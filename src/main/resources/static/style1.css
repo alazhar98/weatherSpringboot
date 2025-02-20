@@ -33,7 +33,7 @@
   padding: 20px; /* Add padding inside the box */
   border-radius: 20px;/* Rounded corners for the box */
   backdrop-filter: blur(10px);/* Apply a blur effect to the box background */
-  box-shadow: 0 0 20px rgba(75, 31, 31, 0.4);
+  box-shadow: 0 0 20px rgba(75, 31, 31, 0.4); /* Add a shadow effect */
 }
 
 .inner-bg {
