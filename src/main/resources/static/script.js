@@ -105,6 +105,7 @@ function changeBg(status) {
         'Haze': 'url(../images/mist.jpeg)',
         'Fog': 'url(../images/mist.jpeg)'
     };
+    // Set the background image or use a default if the status is not found
     document.body.style.backgroundImage = backgrounds[status] || 'url(../images/bg1.jpeg)';
 }
 
