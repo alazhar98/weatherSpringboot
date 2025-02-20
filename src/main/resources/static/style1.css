@@ -57,7 +57,7 @@
   background-position: center; /* Center the background image */
   background-repeat: no-repeat;/*Prevent the image from repeating */
   background-size: cover; /* Scale the image to cover the button */
-  width: 120px;
+  width: 120px;/* Set the width of the button */
   padding: 10px;
   margin: 50px;
   margin-bottom: 30px;
