@@ -120,6 +120,7 @@ function getIconClass(classarg) {
         'Thunderstorm': 'fas fa-thunderstorm',
         'Drizzle': 'fas fa-thunderstorm'
     };
+    // Return the appropriate icon class or a default if the condition is not found
     return icons[classarg] || 'fas fa-cloud-sun';
 }
 
