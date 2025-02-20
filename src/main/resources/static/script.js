@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             fetch(`http://localhost:8080/weather-forecast?cityName=${encodeURIComponent(cityName)}`)
                 .then(response => {
+                               // Check if the response is not OK (e.g., 404 or 500 error)
                     if (!response.ok) throw new Error('Network response was not ok');
                     return response.json(); // Parse response as JSON
                 })
