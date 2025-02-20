@@ -14,6 +14,7 @@
 /* Outer background container */
 .outer-bg {
   border-radius: 15px;/* Rounded corners for the container */
+
   background-image: url(../images/background.jpeg);
   background-position: center;
   background-repeat: no-repeat;
