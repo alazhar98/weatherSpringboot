@@ -51,7 +51,7 @@ function showWeaterReport(weather) {
      // Make the weather body visible
     weatherBody.style.display = 'block';
     let todayDate = new Date();
-    // Update the inner HTML of the weather body with the weather data
+
     weatherBody.innerHTML =
         `
     <div class="location-deatils">
@@ -69,19 +69,16 @@ function showWeaterReport(weather) {
         <div class="basic">Feels like ${weather.feels_like}&deg;C | Humidity ${weather.humidity}%  <br> Pressure ${weather.pressure} mb | Wind ${weather.wind_speed} KMPH</div>
     </div>
     `;
-     // Change the background image based on the weather condition
     changeBg(weather.weather_main);
-      // Reset the input box
     reset();
 }
 
-// Helper function to format time with leading zeros
 function getTime(todayDate) {
     let hour = addZero(todayDate.getHours());
     let minute = addZero(todayDate.getMinutes());
     return `${hour}:${minute}`;
 }
-// Helper function to format the date in a readable way
+
 function dateManage(dateArg) {
     let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -91,7 +88,7 @@ function dateManage(dateArg) {
     let day = days[dateArg.getDay()];
     return `${date} ${month} (${day}) , ${year}`;
 }
-// Function to change the background image based on the weather condition
+
 function changeBg(status) {
     const backgrounds = {
         'Clouds': 'url(../images/clouds.jpeg)',
@@ -105,10 +102,10 @@ function changeBg(status) {
         'Haze': 'url(../images/mist.jpeg)',
         'Fog': 'url(../images/mist.jpeg)'
     };
-    // Set the background image or use a default if the status is not found
+
     document.body.style.backgroundImage = backgrounds[status] || 'url(../images/bg1.jpeg)';
 }
-// Function to get the appropriate Font Awesome icon class based on the weather condition
+
 function getIconClass(classarg) {
     const icons = {
         'Rain': 'fas fa-cloud-showers-heavy',
@@ -120,15 +117,15 @@ function getIconClass(classarg) {
         'Thunderstorm': 'fas fa-thunderstorm',
         'Drizzle': 'fas fa-thunderstorm'
     };
-    // Return the appropriate icon class or a default if the condition is not found
+
     return icons[classarg] || 'fas fa-cloud-sun';
 }
-// Function to reset the input box after fetching weather data
+
 function reset() {
     let input = document.getElementById('input-box');
     input.value = "";
 }
-// Helper function to add a leading zero to single-digit numbers
+
 function addZero(i) {
     if (i < 10) {
         i = "0" + i;
