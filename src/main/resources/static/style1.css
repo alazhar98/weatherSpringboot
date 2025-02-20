@@ -19,7 +19,7 @@
   background-repeat: no-repeat;/* Prevent the image from repeating */
   background-size: contain;/* Scale the image to fit within the container */
   height: 590px;/* Fixed height for the container */
-  width: 100%;
+  width: 100%;/* Full width of the container */
 }
 
 .centered-box {
