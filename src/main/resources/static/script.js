@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Get the search button element by its ID
     let buttonPress = document.getElementById('btn');
     if (buttonPress) {
+               // Add a click event listener to the search button
         buttonPress.addEventListener('click', function () {
             const cityName = document.getElementById('input-box').value.trim();
             if (!cityName) {
