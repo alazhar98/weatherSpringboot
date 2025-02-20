@@ -36,19 +36,17 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     } else {
           // Log an error if the search button is not found
-        console.error("Search button not found!"); // Debugging
+        console.error("Search button not found!");
     }
 });
-// Function to display the weather report
+
 function showWeaterReport(weather) {
-     // Get the weather body element by its ID
     let weatherBody = document.getElementById('weather-body');
     if (!weatherBody) {
-        // Log an error if the weather body element is not found
-        console.error("Weather body element not found!"); // Debugging
+
+        console.error("Weather body element not found!");
         return;
     }
-     // Make the weather body visible
     weatherBody.style.display = 'block';
     let todayDate = new Date();
 
