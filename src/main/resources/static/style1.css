@@ -3,7 +3,7 @@
   background-image: url(../images/background.jpeg);/* Set the background image */
   position: fixed;/* Fix the position of the background */
   left: 0; /* Align to the left edge of the viewport */
-  width: 100%;
+  width: 100%;/* Full width of the viewport */
   height: 590px;
   background-position: center;
   background-repeat: no-repeat;
