@@ -1,41 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Define the character encoding for the document -->
-  <meta charset="UTF-8">
-  <!-- Ensure compatibility with older versions of Internet Explorer -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- Make the page responsive on all devices -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Set the title of the webpage -->
-  <title>Weather Forecast</title>
-  <!-- Set the favicon for the webpage -->
-  <link rel="icon" href="logo.png" type="image/x-icon">
-  <!-- Link to the external CSS file for styling -->
-  <link rel="stylesheet" href="style2.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style2.css">
 </head>
 <body>
-<!-- Main container for the weather app -->
-  <div class="app-main" id="parent">
-    <!-- Header section with the title -->
+<div class="app-main" id="parent">
     <div class="header">
-      <h4>Get Weather</h4>
+        <h4>Get Weather</h4>
     </div>
-    <!-- Search input box and button -->
     <div class="searchInputBox">
-      <!-- Input field for entering the city name -->
-      <input type="text" id="input-box" class="input-box" placeholder="Enter City Name">
-      <!-- Button to trigger the search -->
-      <button id="btn" class="btn">Search</button>
+        <input type="text" id="input-box" class="input-box" placeholder="Enter City Name">
+        <button id="btn" class="btn">Search</button>
     </div>
-    <!-- Container to display the weather information -->
     <div class="weather-body" id="weather-body"></div>
-  </div>
-<!-- Link to the external JavaScript file for functionality -->
-  <script src="script.js"></script>
-<!-- Link to Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<!-- Link to SweetAlert for alert popups -->
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</div>
+<script src="script.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>
