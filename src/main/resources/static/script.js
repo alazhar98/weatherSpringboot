@@ -48,7 +48,7 @@ function showWeaterReport(weather) {
         console.error("Weather body element not found!"); // Debugging
         return;
     }
-
+     // Make the weather body visible
     weatherBody.style.display = 'block';
     let todayDate = new Date();
 
