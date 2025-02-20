@@ -1,5 +1,6 @@
 // Wait for the DOM to be fully loaded before executing the script
 document.addEventListener('DOMContentLoaded', function () {
+    // Get the search button element by its ID
     let buttonPress = document.getElementById('btn');
     if (buttonPress) {
         buttonPress.addEventListener('click', function () {
