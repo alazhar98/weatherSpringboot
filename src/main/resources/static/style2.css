@@ -20,7 +20,7 @@ body {
 /* Header styling */
 .header h4 {
   color: rgb(123, 94, 227);/* Set the text color */
-  font-weight: 700;
+  font-weight: 700;/* Set the font weight */
   font-size: 2.4rem;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
