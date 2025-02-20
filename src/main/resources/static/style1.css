@@ -54,7 +54,7 @@
 /* Button styling */
 .btn {
   background-image: url(../images/_berenice_.gif);/* Set the button background image */
-  background-position: center;
+  background-position: center; /* Center the background image */
   background-repeat: no-repeat;
   background-size: cover;
   width: 120px;
