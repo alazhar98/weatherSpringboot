@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (buttonPress) {
                // Add a click event listener to the search button
         buttonPress.addEventListener('click', function () {
+            // Get the city name from the input box and trim any extra spaces
             const cityName = document.getElementById('input-box').value.trim();
             if (!cityName) {
                 swal("Invalid Input", "Please enter a valid City Name.", "error");
