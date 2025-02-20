@@ -24,7 +24,7 @@
 /* Centered box for content */
 .centered-box {
   text-align: center; /* Center-align the text */
-  position: fixed;
+  position: fixed;/* Fix the position of the box */
   top: 50%;
   left: 50%;
   height: 400px;
