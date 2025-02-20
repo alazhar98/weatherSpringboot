@@ -59,7 +59,7 @@
   background-size: cover; /* Scale the image to cover the button */
   width: 120px;/* Set the width of the button */
   padding: 10px;/* Add padding inside the button */
-  margin: 50px;
+  margin: 50px;/* Add margin around the button */
   margin-bottom: 30px;
   border: 0;
   border-radius: 20px;
