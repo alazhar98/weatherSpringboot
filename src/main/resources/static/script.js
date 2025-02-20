@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error("Search button not found!"); // Debugging
     }
 });
-
+// Function to display the weather report
 function showWeaterReport(weather) {
     let weatherBody = document.getElementById('weather-body');
     if (!weatherBody) {
