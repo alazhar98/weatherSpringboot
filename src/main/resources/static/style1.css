@@ -51,21 +51,21 @@
   color: rgb(123, 94, 227);
   text-shadow: 0 0 10px rgb(255, 255, 255), 0 0 20px #ffffff, 0 0 30px #ffffff;
 }
-/* Button styling */
+
 .btn {
-  background-image: url(../images/_berenice_.gif);/* Set the button background image */
-  background-position: center; /* Center the background image */
-  background-repeat: no-repeat;/*Prevent the image from repeating */
-  background-size: cover; /* Scale the image to cover the button */
-  width: 120px;/* Set the width of the button */
-  padding: 10px;/* Add padding inside the button */
-  margin: 50px;/* Add margin around the button */
-  margin-bottom: 30px;/* Add extra margin at the bottom */
-  border: 0;/* Remove the button border */
-  border-radius: 20px;/* Rounded corners for the button */
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);/* Add a shadow effect */
-  font-weight: bold; /* Make the text bold */
-  cursor: pointer;/* Change the cursor to a pointer on hover */
+  background-image: url(../images/_berenice_.gif);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 120px;
+  padding: 10px;
+  margin: 50px;
+  margin-bottom: 30px;
+  border: 0;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .para {
