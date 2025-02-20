@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const cityName = document.getElementById('input-box').value.trim();
             // Check if the city name is empty
             if (!cityName) {
+                // Show an error message using SweetAlert if the input is invalid
                 swal("Invalid Input", "Please enter a valid City Name.", "error");
                 return;
             }
