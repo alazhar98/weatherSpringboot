@@ -1,26 +1,29 @@
 package com.weatherapp.Models;
 
 
+import com.weatherapp.Enum.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "users") // Explicitly specify the table name for clarity
+@Table(name = "users")
 public class User {
     @NotBlank(message = "Email is mandatory")
     @Column(nullable = false, unique = true)
     private String email;
 
-    @NotBlank(message = "Password is mandatory")
+    @NotBlank(message = "Password can not be empty")
     @Column(nullable = false)
     private String password;
 
-    @Enumerated(EnumType.STRING) // Use EnumType.STRING for storing role as a string in the database
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
 
+    @NotBlank(message = "username can not be empty")
+    @Column(nullable = false ,unique = true)
     private String username;
 
 
