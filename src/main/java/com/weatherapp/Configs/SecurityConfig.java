@@ -1,4 +1,4 @@
-package com.weatherapp.Config;
+package com.weatherapp.Configs;
 
 import com.weatherapp.Filters.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
