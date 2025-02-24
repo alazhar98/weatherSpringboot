@@ -41,12 +41,13 @@ public class AuthService {
             throw new Exception("Email already exists");
         }
 
-        userRepository.save(
-                User.builder()
-                        .email(dto.getEmail())
-                        .password(passwordEncoder.encode(dto.getPassword()))
-                        .role(dto.getRole())
-                        .userName(dto.getUsername()).build()
-        );
+        User user = User.builder()
+                .setEmail(dto.getEmail())
+                .setPassword(passwordEncoder.encode(dto.getPassword()))
+                .setRole(dto.getRole())
+                .setUserName(dto.getUsername())
+                .build();
+
+        userRepository.save(user);
     }
 }
