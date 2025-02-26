@@ -8,10 +8,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 swal("Invalid Input", "Please enter a valid City Name.", "error");
                 return;
             }
-
+            const token = localStorage.getItem("token");
             console.log("Fetching weather data for City:", cityName);
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Authorization", `Bearer ${token}`);
 
-            fetch(`http://localhost:8080/weather-forecast?cityName=${encodeURIComponent(cityName)}`)
+            const requestOptions = {
+              method: "GET",
+              headers: myHeaders,
+              redirect: "follow"
+            };
+
+            fetch(`http://localhost:8080/weather-forecast?cityName=${encodeURIComponent(cityName)}`, requestOptions)
                 .then(response => {
                     if (!response.ok) throw new Error('Network response was not ok');
                     return response.json(); // Parse response as JSON
@@ -78,16 +87,16 @@ function dateManage(dateArg) {
 
 function changeBg(status) {
     const backgrounds = {
-        'Clouds': 'url(../images/clouds.jpeg)',
-        'Rain': 'url(../images/rain.jpeg)',
-        'Clear': 'url(../images/clear.jpeg)',
-        'Snow': 'url(../images/snow.jpeg)',
-        'Sunny': 'url(../images/sunny.jpeg)',
-        'Thunderstorm': 'url(../images/thunder.jpeg)',
-        'Drizzle': 'url(../images/drizzle.jpeg)',
-        'Mist': 'url(../images/mist.jpeg)',
-        'Haze': 'url(../images/mist.jpeg)',
-        'Fog': 'url(../images/mist.jpeg)'
+        'Clouds': 'url(clouds.jpeg)',
+        'Rain': 'url(rain.jpeg)',
+        'Clear': 'url(clear.jpeg)',
+        'Snow': 'url(snow.jpeg)',
+        'Sunny': 'url(sunny.jpeg)',
+        'Thunderstorm': 'url(thunder.jpeg)',
+        'Drizzle': 'url(drizzle.jpeg)',
+        'Mist': 'url(mist.jpeg)',
+        'Haze': 'url(mist.jpeg)',
+        'Fog': 'url(mist.jpeg)'
     };
 
     document.body.style.backgroundImage = backgrounds[status] || 'url(../images/bg1.jpeg)';
