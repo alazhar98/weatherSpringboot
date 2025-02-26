@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         try {
             const response = await fetch("http://localhost:8080/auth/signin", {
-                method: "POST",
+                method: "POST", // Ensure this is a POST request
                 headers: {
                     "Content-Type": "application/json"
                 },
