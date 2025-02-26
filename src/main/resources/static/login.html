@@ -22,6 +22,52 @@
     <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
   </form>
 </div>
-<script src="login.js"></script>
+<script src="login.js">
+</script>
+<script>
+  async function hashPassword(passwordToHash) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(passwordToHash);
+        const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray
+          .map((byte) => byte.toString(16).padStart(2, "0"))
+          .join("");
+      }
+
+    async function handleSignIn(event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const signInPassword = document.getElementById("password").value;
+
+
+      const password = await hashPassword(signInPassword);
+      console.log(password);
+
+
+      const response = await fetch("http://localhost:8080/auth/signin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (!response.ok) {
+        alert("Sign-in failed");
+        return;
+      }
+
+      const data = await response.json();
+      localStorage.setItem("token", data.token);
+      window.location.href = "index.html";
+    }
+
+
+
+
+
+
+
+</script>
 </body>
 </html>
