@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     let buttonPress = document.getElementById('btn');
     if (buttonPress) {
@@ -14,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             fetch(`http://localhost:8080/weather-forecast?cityName=${encodeURIComponent(cityName)}`)
                 .then(response => {
-
                     if (!response.ok) throw new Error('Network response was not ok');
                     return response.json(); // Parse response as JSON
                 })
@@ -24,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .catch(error => {
                     console.error("Error fetching weather data:", error);
-
                     swal("Error", "Failed to fetch weather data: " + error.message, "error");
                 });
         });
@@ -36,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
 function showWeaterReport(weather) {
     let weatherBody = document.getElementById('weather-body');
     if (!weatherBody) {
-
         console.error("Weather body element not found!");
         return;
     }
