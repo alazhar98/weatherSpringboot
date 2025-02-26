@@ -27,8 +27,7 @@ public class AuthControllers {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", e.getMessage()));
         }
     }
-
-    @PostMapping("/signin")
+    @PostMapping("/signin") // This endpoint expects a POST request
     public ResponseEntity<?> signIn(@Valid @RequestBody SignInRequestDTO dto) {
         try {
             String token = authService.signIn(dto);
