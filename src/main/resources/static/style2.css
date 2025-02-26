@@ -9,7 +9,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-image: url("../images/bg.jpg");
+  background-image: url("bg.jpg");
   min-height: 92vh;
   overflow: auto;
   background-repeat: no-repeat;
@@ -33,7 +33,7 @@ body {
   text-align: center;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   border-radius: 15px;
-  background-image: url(../images/bg.jpg);
+  background-image: url(bg.jpg);
 }
 
 .app-main > * {
@@ -54,7 +54,7 @@ body {
 }
 
 .btn {
-  background-image: url(../images/btn.jpeg);
+  background-image: url(btn.jpeg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
