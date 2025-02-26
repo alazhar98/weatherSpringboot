@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (response.ok) {
                 alert("Login successful!");
-                localStorage.setItem("token", result.token);
-                window.location.href = "main.html";
+                localStorage.setItem("token", result.token); // Save the JWT token
+                window.location.href = "landing.html"; // Redirect to the landing page
             } else {
                 alert(result.error || "Login failed! Please check your credentials.");
             }
