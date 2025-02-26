@@ -1,6 +1,6 @@
 
 .bg-img {
-  background-image: url(../images/background.jpeg);
+  background-image: url(@hiilins.jpeg);
   position: fixed;
   left: 0;
   width: 100%;
@@ -14,7 +14,7 @@
 
 .outer-bg {
   border-radius: 15px;
-  background-image: url(../images/background.jpeg);
+  background-image: url(@hiilins.jpeg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -53,7 +53,7 @@
 }
 
 .btn {
-  background-image: url(../images/_berenice_.gif);
+  background-image: url(_berenice_.gif);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
