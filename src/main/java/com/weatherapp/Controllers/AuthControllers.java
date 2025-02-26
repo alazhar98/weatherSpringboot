@@ -28,12 +28,11 @@ public class AuthControllers {
         }
     }
 
-
     @PostMapping("/signin")
     public ResponseEntity<?> signIn(@Valid @RequestBody SignInRequestDTO dto) {
         try {
             String token = authService.signIn(dto);
-            return ResponseEntity.ok(Map.of("token",token));
+            return ResponseEntity.ok(Map.of("token", token));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", e.getMessage()));
         }
