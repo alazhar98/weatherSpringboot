@@ -6,6 +6,7 @@ import lombok.Data;
 public class SignInRequestDTO {
 
     String Username;
+    String password;
 
     public String getPassword() {
         return Password;
